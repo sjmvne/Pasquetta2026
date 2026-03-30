@@ -247,6 +247,38 @@ select.sel:focus{outline:none;border-color:var(--accent)}
 .section:nth-child(7){animation-delay:0.35s}
 .section:nth-child(8){animation-delay:0.40s}
 
+/* MOBILE */
+@media (max-width:600px){
+  .wrap{padding:1.5rem 0.9rem 7rem}
+  .page-title{font-size:26px;letter-spacing:-0.5px}
+  .page-emoji{font-size:40px}
+  .stats-row{gap:8px}
+  .stat-card{padding:0.8rem 0.85rem}
+  .stat-val{font-size:20px}
+  .stat-label{font-size:10px}
+  .section-header{padding:1rem}
+  .section-body{padding:0.9rem 1rem 1rem}
+  .check-item{padding:10px 6px;min-height:48px;align-items:center}
+  .check-item input[type=checkbox]{width:20px;height:20px}
+  .poll-row{flex-wrap:wrap;gap:4px}
+  .poll-label{width:100%;font-size:12px}
+  .poll-bar-bg{order:2;flex:1}
+  .poll-votes{order:3}
+  .note-col{display:none}
+  .data-table td{padding:9px 5px}
+  .comment-input-row{flex-direction:column}
+  .btn-send{padding:13px;width:100%;text-align:center;border-radius:12px}
+  .comment-input{font-size:16px}
+  select.sel{font-size:16px;padding:6px 8px} /* prevent iOS zoom */
+  .fondi-row{flex-wrap:wrap;gap:6px}
+  .fondi-row .fondi-amount{margin-left:auto}
+  .sync-bar{font-size:11px}
+  .s-title{font-size:13px}
+  .blob1{width:280px;height:280px}
+  .blob2{width:240px;height:240px}
+  .blob3{width:180px;height:180px}
+}
+
 /* LOADING */
 #loading{
   position:fixed;inset:0;background:var(--bg);
@@ -294,7 +326,7 @@ select.sel:focus{outline:none;border-color:var(--accent)}
     </div>
     <div class="stat-card">
       <div class="stat-label">Partecipanti</div>
-      <div class="stat-val">13</div>
+      <div class="stat-val">19</div>
       <div class="stat-sub">confermati da chat</div>
     </div>
     <div class="stat-card">
@@ -453,7 +485,7 @@ select.sel:focus{outline:none;border-color:var(--accent)}
     </div>
     <div class="section-body">
       <table class="data-table">
-        <thead><tr><th></th><th>Nome</th><th>Panino</th><th>Note</th></tr></thead>
+        <thead><tr><th></th><th>Nome</th><th>Panino</th><th class="note-col">Note</th></tr></thead>
         <tbody id="ptbody"></tbody>
       </table>
     </div>
@@ -562,19 +594,25 @@ const stateRef = db.ref('pasquetta2026-v1');
 
 <script>
 const PARTICIPANTS = [
-  {name:'Bruno',   init:'BB', av:'av1', panino:'hamburger',   note:'Organizzatore griglia'},
-  {name:'Daniela', init:'DK', av:'av3', panino:'hamburger',   note:''},
-  {name:'Gaia',    init:'GO', av:'av6', panino:'da definire', note:'Porta gonfiabili'},
-  {name:'Mika',    init:'MI', av:'av4', panino:'da definire', note:''},
-  {name:'Simo',    init:'SI', av:'av0', panino:'hamburger',   note:'Musica'},
-  {name:'Fabio',   init:'FA', av:'av5', panino:'da definire', note:''},
-  {name:'Evan',    init:'EV', av:'av2', panino:'da definire', note:'Griglia'},
-  {name:'Sara',    init:'SS', av:'av7', panino:'da definire', note:''},
-  {name:'Elisa',   init:'EC', av:'av7', panino:'pollo',       note:'No carne rossa'},
-  {name:'Ricky',   init:'RI', av:'av3', panino:'da definire', note:''},
-  {name:'Matteo',  init:'MC', av:'av1', panino:'da definire', note:''},
-  {name:'Anto',    init:'AN', av:'av2', panino:'da definire', note:''},
-  {name:'Sofia',   init:'SO', av:'av0', panino:'da definire', note:''},
+  {name:'Fabio',      init:'FA', av:'av0', panino:'da definire', note:''},
+  {name:'Elisa',      init:'EL', av:'av1', panino:'pollo',       note:'No carne rossa'},
+  {name:'Godwin',     init:'GW', av:'av2', panino:'da definire', note:''},
+  {name:'Iris',       init:'IR', av:'av3', panino:'da definire', note:''},
+  {name:'Riccardo',   init:'RI', av:'av4', panino:'da definire', note:''},
+  {name:'Sara',       init:'SA', av:'av5', panino:'da definire', note:''},
+  {name:'Alessandro', init:'AL', av:'av6', panino:'da definire', note:''},
+  {name:'Sofia',      init:'SF', av:'av7', panino:'da definire', note:''},
+  {name:'Nicole',     init:'NC', av:'av0', panino:'da definire', note:''},
+  {name:'Mika',       init:'MK', av:'av1', panino:'da definire', note:''},
+  {name:'Daniela',    init:'DK', av:'av2', panino:'hamburger',   note:''},
+  {name:'Gaia',       init:'GA', av:'av3', panino:'da definire', note:'Porta gonfiabili'},
+  {name:'Evan',       init:'EV', av:'av4', panino:'da definire', note:'Griglia'},
+  {name:'Matteo',     init:'MT', av:'av5', panino:'da definire', note:''},
+  {name:'Ottavia',    init:'OT', av:'av6', panino:'da definire', note:''},
+  {name:'Camillo',    init:'CM', av:'av7', panino:'da definire', note:''},
+  {name:'Bruno',      init:'BR', av:'av0', panino:'hamburger',   note:'Organizzatore griglia'},
+  {name:'Giulia',     init:'GI', av:'av1', panino:'da definire', note:''},
+  {name:'Antonio',    init:'AT', av:'av2', panino:'da definire', note:''},
 ];
 
 const PANINO_OPTS = ['hamburger','salamella','pollo','solo pane','niente','da definire'];
@@ -680,7 +718,7 @@ function buildParticipants() {
           ${PANINO_OPTS.map(o=>`<option value="${o}"${o===panino?' selected':''}>${o}</option>`).join('')}
         </select>
       </td>
-      <td style="color:var(--text3);font-size:12px">${p.note}</td>
+      <td class="note-col" style="color:var(--text3);font-size:12px">${p.note}</td>
     `;
     tbody.appendChild(tr);
   });
