@@ -87,7 +87,8 @@ body{background:var(--bg);color:var(--text);font-family:'Instrument Sans',sans-s
 .section{background:var(--glass);border:1px solid var(--glass-border);border-radius:var(--radius);overflow:hidden;margin-bottom:12px;backdrop-filter:blur(16px);animation:fadeUp .5s ease both}
 .section-header{display:flex;align-items:center;gap:10px;padding:.9rem 1.1rem;cursor:pointer;user-select:none;transition:background .15s}
 .section-header:hover{background:var(--glass-hover)}
-.s-icon{font-size:16px;width:22px;text-align:center;flex-shrink:0}
+.s-icon{font-size:16px;width:22px;text-align:center;flex-shrink:0;display:flex;align-items:center;justify-content:center}
+.s-icon svg{width:18px;height:18px;stroke-width:2}
 .s-title{font-family:'Syne',sans-serif;font-size:14px;font-weight:600;flex:1;letter-spacing:-.2px}
 .s-badge{font-size:11px;padding:2px 9px;border-radius:99px;background:rgba(255,255,255,0.08);color:var(--text2);flex-shrink:0}
 .s-chevron{font-size:10px;color:var(--text3);transition:transform .3s;flex-shrink:0}
@@ -354,7 +355,7 @@ input[type=checkbox]:checked{animation:checkRipple .4s ease-out}
 .modal-title{font-family:'Syne',sans-serif;font-size:20px;font-weight:700;margin-bottom:1.25rem;color:var(--text)}
 .modal-field{margin-bottom:1rem}
 .modal-label{font-size:11px;color:var(--text3);text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px;display:block}
-.modal-input{width:100%;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:10px;padding:10px 14px;color:var(--text);font-size:14px;font-family:'Instrument Sans',sans-serif}
+.modal-input{width:100%;box-sizing:border-box;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:10px;padding:10px 14px;color:var(--text);font-size:14px;font-family:'Instrument Sans',sans-serif}
 .modal-input:focus{outline:none;border-color:var(--accent)}
 .emoji-grid{display:flex;flex-wrap:wrap;gap:6px}
 .emoji-opt{width:40px;height:40px;border-radius:10px;border:2px solid transparent;background:rgba(255,255,255,0.06);display:flex;align-items:center;justify-content:center;font-size:22px;cursor:pointer;transition:border-color .12s,transform .12s}
@@ -413,14 +414,22 @@ input[type=checkbox]:checked{animation:checkRipple .4s ease-out}
 .settings-list-item .pill-x:hover{color:var(--danger)}
 .delete-event-btn{background:rgba(255,80,80,0.1);border:1px solid rgba(255,80,80,0.2);border-radius:8px;padding:6px 12px;color:var(--danger);font-size:11px;font-family:'Syne',sans-serif;font-weight:600;cursor:pointer;transition:opacity .15s;margin-top:6px}
 .delete-event-btn:hover{opacity:.8}
-.install-banner{position:fixed;bottom:0;left:0;right:0;z-index:9999;padding:1rem 1.25rem calc(1rem + env(safe-area-inset-bottom));background:rgba(18,18,26,.95);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-top:1px solid rgba(255,255,255,.08);display:flex;align-items:center;gap:12px;animation:slideUp .4s cubic-bezier(.4,0,.2,1) both}
-.install-banner-icon{font-size:32px;flex-shrink:0}
-.install-banner-text{flex:1;min-width:0}
-.install-banner-title{font-family:'Syne',sans-serif;font-size:14px;font-weight:600;color:#fff}
-.install-banner-desc{font-size:12px;color:rgba(255,255,255,.5);margin-top:2px}
-.install-banner-btn{background:#ff6b35;color:#fff;border:none;border-radius:10px;padding:8px 16px;font-size:13px;font-weight:600;cursor:pointer;flex-shrink:0;font-family:'Syne',sans-serif}
-.install-banner-close{background:none;border:none;color:rgba(255,255,255,.35);font-size:20px;cursor:pointer;padding:4px;flex-shrink:0;line-height:1}
-@keyframes slideUp{from{transform:translateY(100%)}to{transform:translateY(0)}}
+.install-overlay{position:fixed;inset:0;z-index:10000;background:rgba(0,0,0,.6);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);display:flex;align-items:center;justify-content:center;padding:1.5rem;animation:installFadeIn .3s ease both}
+.install-popup{background:rgba(22,22,34,.97);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border:1px solid rgba(255,255,255,.1);border-radius:20px;max-width:340px;width:100%;padding:2rem 1.5rem 1.5rem;text-align:center;animation:installScaleIn .35s cubic-bezier(.4,0,.2,1) both}
+.install-popup-icon{font-size:48px;margin-bottom:.75rem}
+.install-popup-title{font-family:'Syne',sans-serif;font-size:18px;font-weight:700;color:#fff;margin-bottom:.25rem}
+.install-popup-subtitle{font-size:13px;color:rgba(255,255,255,.45);margin-bottom:1.25rem}
+.install-steps{text-align:left;margin-bottom:1.25rem}
+.install-step{display:flex;align-items:flex-start;gap:10px;padding:.6rem 0;border-bottom:1px solid rgba(255,255,255,.06)}
+.install-step:last-child{border-bottom:none}
+.install-step-num{width:24px;height:24px;border-radius:50%;background:#ff6b35;color:#fff;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
+.install-step-text{font-size:13px;color:rgba(255,255,255,.8);line-height:1.4}
+.install-step-text strong{color:#fff}
+.install-popup-btn{background:#ff6b35;color:#fff;border:none;border-radius:12px;padding:12px 24px;font-size:15px;font-weight:700;cursor:pointer;font-family:'Syne',sans-serif;width:100%;margin-bottom:.75rem;transition:opacity .2s}
+.install-popup-btn:active{opacity:.8}
+.install-popup-dismiss{background:none;border:none;color:rgba(255,255,255,.35);font-size:13px;cursor:pointer;padding:4px;font-family:'Instrument Sans',sans-serif}
+@keyframes installFadeIn{from{opacity:0}to{opacity:1}}
+@keyframes installScaleIn{from{opacity:0;transform:scale(.9)}to{opacity:1;transform:scale(1)}}
 </style>
 </head>
 <body>
@@ -435,15 +444,28 @@ input[type=checkbox]:checked{animation:checkRipple .4s ease-out}
     <div class="splash-bar"><div class="splash-bar-fill"></div></div>
   </div>
 
-  <div class="install-banner" v-if="showInstall && splashDone">
-    <div class="install-banner-icon">💩</div>
-    <div class="install-banner-text">
-      <div class="install-banner-title">Installa Get Sh*t Done - Event Organizer</div>
-      <div class="install-banner-desc" v-if="installType==='ios'">Tap Condividi ⬆ poi "Aggiungi a Home"</div>
-      <div class="install-banner-desc" v-else>Aggiungila alla schermata home!</div>
+  <div class="install-overlay" v-if="showInstall && splashDone" @click.self="dismissInstall">
+    <div class="install-popup">
+      <div class="install-popup-icon">💩</div>
+      <div class="install-popup-title">Installa l'app</div>
+      <div class="install-popup-subtitle">Accedi rapidamente dalla schermata home</div>
+      <div v-if="installType==='ios'" class="install-steps">
+        <div class="install-step">
+          <div class="install-step-num">1</div>
+          <div class="install-step-text">Tocca il pulsante <strong>Condividi</strong> ⬆️ nella barra di Safari</div>
+        </div>
+        <div class="install-step">
+          <div class="install-step-num">2</div>
+          <div class="install-step-text">Scorri e tocca <strong>"Aggiungi a Home"</strong></div>
+        </div>
+        <div class="install-step">
+          <div class="install-step-num">3</div>
+          <div class="install-step-text">Tocca <strong>"Aggiungi"</strong> in alto a destra</div>
+        </div>
+      </div>
+      <button v-else class="install-popup-btn" @click="doInstall">Installa</button>
+      <button class="install-popup-dismiss" @click="dismissInstall">Non ora</button>
     </div>
-    <button class="install-banner-btn" v-if="installType!=='ios'" @click="doInstall">Installa</button>
-    <button class="install-banner-close" @click="dismissInstall">&times;</button>
   </div>
   <div v-if="!loaded && splashDone" id="loading"><div class="spinner"></div><span>Caricamento...</span></div>
 
@@ -518,7 +540,7 @@ input[type=checkbox]:checked{animation:checkRipple .4s ease-out}
   <div v-else-if="subPage==='photos'" class="sub-page">
     <div class="sub-page-header">
       <button class="back-btn" @click="subPage=null">←</button>
-      <div class="sub-page-title">📸 Foto</div>
+      <div class="sub-page-title"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ffd166" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline;vertical-align:middle;margin-right:6px;margin-bottom:2px"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"/><circle cx="12" cy="13" r="3"/></svg>Foto</div>
       <span class="s-badge">{{ photos.length }} foto</span>
     </div>
     <div style="margin-bottom:10px;display:flex;align-items:center;gap:8px">
@@ -556,7 +578,7 @@ input[type=checkbox]:checked{animation:checkRipple .4s ease-out}
   <div v-else-if="subPage==='comments'" class="sub-page">
     <div class="sub-page-header">
       <button class="back-btn" @click="subPage=null">←</button>
-      <div class="sub-page-title">💬 Note & commenti</div>
+      <div class="sub-page-title"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#80c4ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline;vertical-align:middle;margin-right:6px;margin-bottom:2px"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg>Note & commenti</div>
       <span class="s-badge">{{ comments.length }} note</span>
     </div>
     <div class="comment-list">
@@ -565,7 +587,7 @@ input[type=checkbox]:checked{animation:checkRipple .4s ease-out}
         <div class="swipe-content comment-bubble" style="border-radius:12px">
           <div style="flex:1;min-width:0">
             <div class="comment-meta">{{ c.author }} · {{ c.time }}</div>
-            <input class="edit-inline" v-model="c.text" @change="scheduleSave" style="font-size:13px">
+            <div style="font-size:13px;color:var(--text);line-height:1.4;padding:2px 6px">{{ c.text }}</div>
           </div>
           <button class="btn-del" @click="removeItem('comments',c.id)" style="width:20px;height:20px;font-size:12px">×</button>
         </div>
@@ -591,8 +613,8 @@ input[type=checkbox]:checked{animation:checkRipple .4s ease-out}
   <div v-else class="wrap">
     <!-- FLOATING BTNS -->
     <div class="floating-btns">
-      <button class="float-btn float-btn-photos" @click="subPage='photos'">📸<span v-if="photos.length" class="float-badge">{{ photos.length }}</span></button>
-      <button class="float-btn float-btn-comments" @click="subPage='comments'">💬<span v-if="comments.length" class="float-badge">{{ comments.length }}</span></button>
+      <button class="float-btn float-btn-photos" @click="subPage='photos'"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"/><circle cx="12" cy="13" r="3"/></svg><span v-if="photos.length" class="float-badge">{{ photos.length }}</span></button>
+      <button class="float-btn float-btn-comments" @click="subPage='comments'"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg><span v-if="comments.length" class="float-badge">{{ comments.length }}</span></button>
     </div>
 
     <!-- HEADER -->
@@ -600,7 +622,7 @@ input[type=checkbox]:checked{animation:checkRipple .4s ease-out}
       <div class="event-header-row">
         <button class="back-btn" @click="goHome">←</button>
         <div class="page-emoji" style="font-size:40px;margin-bottom:0">{{ currentEventMeta.emoji || '📅' }}</div>
-        <button class="settings-btn" @click="showSettings=true">⚙️</button>
+        <button class="settings-btn" @click="showSettings=true"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg></button>
       </div>
       <div class="page-title">{{ currentEventMeta.name || 'Evento' }}</div>
       <div class="page-sub"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline;vertical-align:middle;margin-right:4px;margin-bottom:1px"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4"/><path d="M8 2v4"/><path d="M3 10h18"/></svg>{{ formatEventDate(currentEventMeta.date) }}<template v-if="currentEventMeta.location"> &nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline;vertical-align:middle;margin-right:4px;margin-bottom:1px"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>{{ currentEventMeta.location.name }}</template></div>
@@ -671,7 +693,7 @@ input[type=checkbox]:checked{animation:checkRipple .4s ease-out}
     <!-- ===================== PARTECIPANTI ===================== -->
     <div class="section">
       <div class="section-header" @click="toggle('participants')">
-        <span class="s-icon">👥</span>
+        <span class="s-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#64b5f6" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
         <span class="s-title">Partecipanti</span>
         <span class="s-badge">{{ participantsFiltered.length }} persone</span>
         <span class="s-chevron" :class="{open:open.participants}">▶</span>
@@ -717,7 +739,7 @@ input[type=checkbox]:checked{animation:checkRipple .4s ease-out}
     <!-- ===================== STATO ORGANIZZAZIONE ===================== -->
     <div class="section">
       <div class="section-header" @click="toggle('tasks')">
-        <span class="s-icon">📋</span>
+        <span class="s-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#81c784" stroke-linecap="round" stroke-linejoin="round"><path d="m3 17 2 2 4-4"/><path d="m3 7 2 2 4-4"/><path d="M13 6h8"/><path d="M13 12h8"/><path d="M13 18h8"/></svg></span>
         <span class="s-title">Stato organizzazione</span>
         <span class="s-badge">{{ tasksDone }}/{{ tasks.length }} completati</span>
         <span class="s-chevron" :class="{open:open.tasks}">▶</span>
@@ -773,7 +795,7 @@ input[type=checkbox]:checked{animation:checkRipple .4s ease-out}
     <!-- ===================== MENU ===================== -->
     <div class="section">
       <div class="section-header" @click="toggle('menu')">
-        <span class="s-icon">🍖</span>
+        <span class="s-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#ffb74d" stroke-linecap="round" stroke-linejoin="round"><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"/><path d="M7 2v20"/><path d="M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"/></svg></span>
         <span class="s-title">Menu</span>
         <span class="s-badge">a persona</span>
         <span class="s-chevron" :class="{open:open.menu}">▶</span>
@@ -806,7 +828,7 @@ input[type=checkbox]:checked{animation:checkRipple .4s ease-out}
     <!-- ===================== LISTA SPESA ===================== -->
     <div class="section">
       <div class="section-header" @click="toggle('shopping')">
-        <span class="s-icon">🛒</span>
+        <span class="s-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#4dd0e1" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg></span>
         <span class="s-title">Lista della spesa</span>
         <span class="s-badge">{{ shoppingDone }}/{{ shopping.length }}</span>
         <span class="s-chevron" :class="{open:open.shopping}">▶</span>
@@ -852,7 +874,7 @@ input[type=checkbox]:checked{animation:checkRipple .4s ease-out}
     <!-- ===================== CHI PORTA COSA ===================== -->
     <div class="section">
       <div class="section-header" @click="toggle('materials')">
-        <span class="s-icon">🎒</span>
+        <span class="s-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#ce93d8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10a4 4 0 0 1 4-4h8a4 4 0 0 1 4 4v10a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2Z"/><path d="M9 6V4a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2"/><path d="M8 21v-5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v5"/><path d="M8 10h8"/><path d="M8 18h8"/></svg></span>
         <span class="s-title">Chi porta cosa</span>
         <span class="s-badge">{{ unassignedMaterials }} da assegnare</span>
         <span class="s-chevron" :class="{open:open.materials}">▶</span>
@@ -905,7 +927,7 @@ input[type=checkbox]:checked{animation:checkRipple .4s ease-out}
     <!-- ===================== INTOLLERANZE (riepilogo) ===================== -->
     <div class="section" v-if="allergies.length">
       <div class="section-header" @click="toggle('allergies')">
-        <span class="s-icon">⚠️</span>
+        <span class="s-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#ef5350" stroke-linecap="round" stroke-linejoin="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg></span>
         <span class="s-title">Intolleranze & preferenze</span>
         <span class="s-badge">{{ allergies.length }} note</span>
         <span class="s-chevron" :class="{open:open.allergies}">▶</span>
@@ -923,7 +945,7 @@ input[type=checkbox]:checked{animation:checkRipple .4s ease-out}
     <!-- ===================== PAGAMENTI ===================== -->
     <div class="section">
       <div class="section-header" @click="toggle('payments')">
-        <span class="s-icon">💸</span>
+        <span class="s-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#aed581" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12V7H5a2 2 0 0 1 0-4h14v4"/><path d="M3 5v14a2 2 0 0 0 2 2h16v-5"/><path d="M18 12a2 2 0 0 0 0 4h4v-4Z"/></svg></span>
         <span class="s-title">Chi deve quanto</span>
         <span class="s-badge">{{ paidCount }}/{{ participants.length }} pagati</span>
         <span class="s-chevron" :class="{open:open.payments}">▶</span>
@@ -1019,7 +1041,7 @@ input[type=checkbox]:checked{animation:checkRipple .4s ease-out}
     -->
 
     <!-- DELETE EVENT -->
-    <div style="text-align:center;margin-top:2rem">
+    <div style="text-align:center;margin-top:2rem;margin-bottom:2rem">
       <button class="delete-event-btn" @click="deleteEvent">🗑️ Elimina evento</button>
     </div>
 
@@ -1027,7 +1049,7 @@ input[type=checkbox]:checked{animation:checkRipple .4s ease-out}
     <teleport to="body">
       <div v-if="showSettings" class="modal-overlay" @click.self="showSettings=false">
         <div class="modal" style="max-width:480px">
-          <div class="modal-title">⚙️ Opzioni evento</div>
+          <div class="modal-title"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline;vertical-align:middle;margin-right:6px;margin-bottom:2px"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg>Opzioni evento</div>
           <div class="settings-tabs">
             <span class="settings-tab" :class="{active:settingsTab==='info'}" @click="settingsTab='info'">Info</span>
             <span class="settings-tab" :class="{active:settingsTab==='fields'}" @click="settingsTab='fields'">Campi partecipanti</span>
@@ -1336,7 +1358,7 @@ createApp({
     const showCreateModal = ref(false);
     const newEvent = reactive({name:'',emoji:'🎉',date:'',locationQuery:'',location:null});
     const geoResults = ref([]);
-    const emojiOptions = ['🎉','🏖️','🎂','🍕','⚽','🎄','🐣','🎃','💒','🎓','🏕️','🎵','🍔','🎯','🏔️','👻','🎪','🌸','🎿','🥂'];
+    const emojiOptions = ['🎉','🏖️','🎂','🍕','⚽','🎄','🐣','🎃','💒','🎓','🏕️','🎵','🍔','🎯','🏔️','👻','🎪','🌸','🎿','🥂','🎮','🏀','🎤','🍷','🧁','🌊','🏠','🚗','✈️','🎁','🎶','❤️','🔥','⭐','🌈','🍣','🥳','🧀','🐶','🌻'];
 
     const eventList = computed(()=>{
       return Object.entries(events.value).map(([id,ev])=>({id,...ev})).sort((a,b)=>{
