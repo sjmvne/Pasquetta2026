@@ -9,7 +9,7 @@
 <meta name="mobile-web-app-capable" content="yes">
 <link rel="manifest" href="manifest.json">
 <title>Get Sh*t Done - Event Organizer</title>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700&family=Instrument+Sans:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
 button,input,select,label,.check-item,.section-header{touch-action:manipulation}
@@ -23,7 +23,7 @@ button,input,select,label,.check-item,.section-header{touch-action:manipulation}
   --radius:16px;--radius-sm:10px;
 }
 html{scroll-behavior:smooth}
-body{background:var(--bg);color:var(--text);font-family:'Instrument Sans',sans-serif;font-size:14px;line-height:1.6;min-height:100vh}
+body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-size:14px;line-height:1.6;min-height:100vh}
 
 .bg-blobs{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
 .blob{position:absolute;border-radius:50%;filter:blur(80px);opacity:0.18}
@@ -43,7 +43,7 @@ body{background:var(--bg);color:var(--text);font-family:'Instrument Sans',sans-s
 /* HEADER */
 .page-header{margin-bottom:2.5rem;animation:fadeUp .5s ease both}
 .page-emoji{font-size:52px;line-height:1;margin-bottom:.6rem}
-.page-title{font-family:'Syne',sans-serif;font-size:36px;font-weight:700;letter-spacing:-1px;background:linear-gradient(135deg,#f0eee8 30%,#ff6b35);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.page-title{font-family:'Inter',sans-serif;font-size:36px;font-weight:700;letter-spacing:-1px;background:linear-gradient(135deg,#f0eee8 30%,#ff6b35);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
 .page-sub{font-size:13px;color:var(--text2);margin-top:4px}
 .progress-wrap{margin-top:1.25rem;display:flex;align-items:center;gap:12px}
 .progress-track{flex:1;height:4px;background:rgba(255,255,255,0.1);border-radius:99px;overflow:hidden;position:relative}
@@ -57,12 +57,12 @@ body{background:var(--bg);color:var(--text);font-family:'Instrument Sans',sans-s
 .weather-icon{font-size:48px;line-height:1;filter:drop-shadow(0 4px 12px rgba(255,209,102,0.3));animation:weatherFloat 3s ease-in-out infinite;color:var(--accent2)}
 @keyframes weatherFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
 .weather-info{flex:1;min-width:0}
-.weather-date{font-family:'Syne',sans-serif;font-size:15px;font-weight:600;color:var(--text);letter-spacing:-.2px}
+.weather-date{font-family:'Inter',sans-serif;font-size:15px;font-weight:600;color:var(--text);letter-spacing:-.2px}
 .weather-desc{font-size:12px;color:var(--text2);margin-top:2px;text-transform:capitalize}
 .weather-details{display:flex;gap:14px;margin-top:6px;flex-wrap:wrap}
 .weather-detail{font-size:11px;color:var(--text3);display:flex;align-items:center;gap:4px}
 .weather-detail span{font-size:13px}
-.weather-temp{font-family:'Syne',sans-serif;font-size:32px;font-weight:700;color:var(--text);flex-shrink:0;line-height:1}
+.weather-temp{font-family:'Inter',sans-serif;font-size:32px;font-weight:700;color:var(--text);flex-shrink:0;line-height:1}
 .weather-temp small{font-size:14px;font-weight:400;color:var(--text2)}
 .weather-loading{font-size:12px;color:var(--text3);display:flex;align-items:center;gap:8px}
 .weather-loading .dot-pulse{display:inline-flex;gap:3px}
@@ -80,7 +80,7 @@ body{background:var(--bg);color:var(--text);font-family:'Instrument Sans',sans-s
 /* STATS STRIP */
 .stats-strip{display:flex;align-items:center;justify-content:center;gap:0;background:var(--glass);border:1px solid var(--glass-border);border-radius:var(--radius-sm);padding:8px 12px;backdrop-filter:blur(12px);margin-bottom:12px;animation:fadeUp .5s ease both;flex-wrap:nowrap;overflow-x:auto}
 .stats-strip-item{display:flex;align-items:baseline;gap:4px;padding:0 10px;white-space:nowrap}
-.stats-strip-val{font-family:'Syne',sans-serif;font-size:15px;font-weight:700;color:var(--text)}
+.stats-strip-val{font-family:'Inter',sans-serif;font-size:15px;font-weight:700;color:var(--text)}
 .stats-strip-label{font-size:10px;color:var(--text3)}
 .stats-strip-sep{width:1px;height:16px;background:rgba(255,255,255,0.1);flex-shrink:0}
 
@@ -90,7 +90,7 @@ body{background:var(--bg);color:var(--text);font-family:'Instrument Sans',sans-s
 .section-header:hover{background:var(--glass-hover)}
 .s-icon{font-size:16px;width:22px;text-align:center;flex-shrink:0;display:flex;align-items:center;justify-content:center}
 .s-icon svg{width:18px;height:18px;stroke-width:2}
-.s-title{font-family:'Syne',sans-serif;font-size:14px;font-weight:600;flex:1;letter-spacing:-.2px}
+.s-title{font-family:'Inter',sans-serif;font-size:14px;font-weight:600;flex:1;letter-spacing:-.2px}
 .s-badge{font-size:11px;padding:2px 9px;border-radius:99px;background:rgba(255,255,255,0.08);color:var(--text2);flex-shrink:0}
 .s-chevron{font-size:10px;color:var(--text3);transition:transform .3s;flex-shrink:0}
 .s-chevron.open{transform:rotate(90deg)}
@@ -119,7 +119,7 @@ input[type=checkbox]:checked::after{transform:rotate(45deg) scale(1)}
 .done{text-decoration:line-through;color:var(--text3)!important}
 
 /* INLINE EDIT */
-.edit-inline{background:transparent;border:1px solid transparent;border-radius:6px;padding:2px 6px;color:var(--text);font-size:13px;font-family:'Instrument Sans',sans-serif;width:100%;transition:border-color .15s,background .15s}
+.edit-inline{background:transparent;border:1px solid transparent;border-radius:6px;padding:2px 6px;color:var(--text);font-size:13px;font-family:'Inter',sans-serif;width:100%;transition:border-color .15s,background .15s}
 .edit-inline:hover{border-color:rgba(255,255,255,0.1)}
 .edit-inline:focus{outline:none;border-color:var(--accent);background:rgba(255,255,255,0.05)}
 .edit-inline::placeholder{color:var(--text3)}
@@ -141,7 +141,7 @@ input[type=checkbox]:checked::after{transform:rotate(45deg) scale(1)}
 .status-done{background:rgba(6,214,160,0.12);color:#06d6a0;border:1px solid rgba(6,214,160,0.2)}
 
 /* AVATAR */
-.avatar{width:28px;height:28px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:10px;font-weight:600;flex-shrink:0;font-family:'Syne',sans-serif}
+.avatar{width:28px;height:28px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:10px;font-weight:600;flex-shrink:0;font-family:'Inter',sans-serif}
 .av0{background:rgba(255,107,53,0.2);color:#ff8c60}
 .av1{background:rgba(6,214,160,0.2);color:#06d6a0}
 .av2{background:rgba(255,209,102,0.2);color:#ffd166}
@@ -152,12 +152,12 @@ input[type=checkbox]:checked::after{transform:rotate(45deg) scale(1)}
 .av7{background:rgba(255,150,200,0.2);color:#ff96c8}
 
 /* SELECT */
-select.sel{font-size:12px;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);border-radius:7px;padding:3px 7px;color:var(--text);cursor:pointer;font-family:'Instrument Sans',sans-serif}
+select.sel{font-size:12px;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);border-radius:7px;padding:3px 7px;color:var(--text);cursor:pointer;font-family:'Inter',sans-serif}
 select.sel:focus{outline:none;border-color:var(--accent)}
 
 /* ADD ROW */
 .add-row{display:flex;gap:8px;margin-top:10px;padding-top:10px;border-top:1px solid rgba(255,255,255,0.06)}
-.add-row input,.add-row select{flex:1;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:10px;padding:8px 12px;color:var(--text);font-size:13px;font-family:'Instrument Sans',sans-serif}
+.add-row input,.add-row select{flex:1;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:10px;padding:8px 12px;color:var(--text);font-size:13px;font-family:'Inter',sans-serif}
 .add-row input:focus,.add-row select:focus{outline:none;border-color:rgba(255,107,53,0.5)}
 .btn-add{width:40px;height:40px;border-radius:50%;background:var(--accent);border:none;color:#fff;font-size:20px;font-weight:600;cursor:pointer;transition:transform .15s,opacity .15s;display:flex;align-items:center;justify-content:center;flex-shrink:0}
 .btn-add:hover{transform:rotate(90deg) scale(1.05)}
@@ -165,7 +165,7 @@ select.sel:focus{outline:none;border-color:var(--accent)}
 
 /* MINI ADD ROW (inside sections like menu) */
 .mini-add{display:flex;gap:6px;margin-top:6px}
-.mini-add input{flex:1;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);border-radius:8px;padding:5px 10px;color:var(--text);font-size:12px;font-family:'Instrument Sans',sans-serif}
+.mini-add input{flex:1;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);border-radius:8px;padding:5px 10px;color:var(--text);font-size:12px;font-family:'Inter',sans-serif}
 .mini-add input:focus{outline:none;border-color:rgba(255,107,53,0.4)}
 .mini-add button{width:28px;height:28px;border-radius:50%;background:rgba(255,107,53,0.2);border:none;color:var(--accent);font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:transform .15s}
 .mini-add button:hover{transform:scale(1.1)}
@@ -204,9 +204,9 @@ hr.div{border:none;border-top:1px solid var(--glass-border);margin:10px 0}
 .comment-del{position:absolute;top:8px;right:8px;opacity:0;transition:opacity .15s}
 .comment-bubble:hover .comment-del{opacity:1}
 .comment-input-row{display:flex;gap:8px}
-.comment-input{flex:1;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:10px;padding:8px 12px;color:var(--text);font-size:13px;font-family:'Instrument Sans',sans-serif;resize:none}
+.comment-input{flex:1;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:10px;padding:8px 12px;color:var(--text);font-size:13px;font-family:'Inter',sans-serif;resize:none}
 .comment-input:focus{outline:none;border-color:rgba(255,107,53,0.5)}
-.btn-send{background:var(--accent);border:none;border-radius:10px;padding:8px 14px;color:#fff;font-size:13px;cursor:pointer;font-family:'Syne',sans-serif;font-weight:600;transition:opacity .15s;white-space:nowrap}
+.btn-send{background:var(--accent);border:none;border-radius:10px;padding:8px 14px;color:#fff;font-size:13px;cursor:pointer;font-family:'Inter',sans-serif;font-weight:600;transition:opacity .15s;white-space:nowrap}
 .btn-send:hover{opacity:.85}
 
 /* ALLERGY CALLOUT */
@@ -246,7 +246,7 @@ input[type=checkbox]:checked{animation:checkRipple .4s ease-out}
 .splash.splash-out{opacity:0;transform:scale(1.05);pointer-events:none}
 .splash-logo{font-size:72px;animation:splashBounce .8s cubic-bezier(.34,1.56,.64,1) both}
 @keyframes splashBounce{0%{opacity:0;transform:scale(0.3) rotate(-10deg)}100%{opacity:1;transform:scale(1) rotate(0deg)}}
-.splash-title{font-family:'Syne',sans-serif;font-size:28px;font-weight:700;background:linear-gradient(135deg,#f0eee8 30%,#ff6b35);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;opacity:0;animation:splashFadeIn .5s ease .4s forwards}
+.splash-title{font-family:'Inter',sans-serif;font-size:28px;font-weight:700;background:linear-gradient(135deg,#f0eee8 30%,#ff6b35);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;opacity:0;animation:splashFadeIn .5s ease .4s forwards}
 .splash-sub{font-size:13px;color:var(--text2);opacity:0;animation:splashFadeIn .5s ease .7s forwards}
 @keyframes splashFadeIn{to{opacity:1}}
 .splash-bar{width:120px;height:3px;border-radius:99px;background:rgba(255,255,255,0.1);margin-top:8px;overflow:hidden;opacity:0;animation:splashFadeIn .3s ease .9s forwards}
@@ -254,7 +254,7 @@ input[type=checkbox]:checked{animation:checkRipple .4s ease-out}
 @keyframes splashProgress{to{width:100%}}
 
 /* LOADING */
-#loading{position:fixed;inset:0;background:var(--bg);display:flex;align-items:center;justify-content:center;z-index:100;font-family:'Syne',sans-serif;font-size:16px;color:var(--text2);flex-direction:column;gap:12px}
+#loading{position:fixed;inset:0;background:var(--bg);display:flex;align-items:center;justify-content:center;z-index:100;font-family:'Inter',sans-serif;font-size:16px;color:var(--text2);flex-direction:column;gap:12px}
 .spinner{width:32px;height:32px;border:2px solid rgba(255,255,255,0.1);border-top-color:var(--accent);border-radius:50%;animation:spin .7s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
 
@@ -291,7 +291,7 @@ input[type=checkbox]:checked{animation:checkRipple .4s ease-out}
 .lightbox img{max-width:95vw;max-height:75vh;object-fit:contain;border-radius:10px}
 .lightbox-info{margin-top:12px;font-size:12px;color:var(--text2);text-align:center}
 .lightbox-actions{display:flex;gap:12px;margin-top:16px}
-.lightbox-btn{display:flex;align-items:center;gap:6px;padding:10px 20px;border-radius:12px;border:none;font-size:13px;font-weight:600;font-family:'Syne',sans-serif;cursor:pointer;transition:transform .12s}
+.lightbox-btn{display:flex;align-items:center;gap:6px;padding:10px 20px;border-radius:12px;border:none;font-size:13px;font-weight:600;font-family:'Inter',sans-serif;cursor:pointer;transition:transform .12s}
 .lightbox-btn:active{transform:scale(.95)}
 .lightbox-btn-download{background:var(--accent);color:#fff}
 .lightbox-btn-close{background:rgba(255,255,255,0.1);color:var(--text)}
@@ -342,7 +342,7 @@ input[type=checkbox]:checked{animation:checkRipple .4s ease-out}
 .event-card:active{transform:scale(.98)}
 .event-card-emoji{font-size:36px;line-height:1;flex-shrink:0}
 .event-card-info{flex:1;min-width:0}
-.event-card-name{font-family:'Syne',sans-serif;font-size:16px;font-weight:600;color:var(--text)}
+.event-card-name{font-family:'Inter',sans-serif;font-size:16px;font-weight:600;color:var(--text)}
 .event-card-meta{font-size:12px;color:var(--text2);margin-top:2px}
 .event-card-arrow{font-size:14px;color:var(--text3);flex-shrink:0}
 .empty-home{text-align:center;padding:3rem 1rem;color:var(--text3)}
@@ -353,10 +353,10 @@ input[type=checkbox]:checked{animation:checkRipple .4s ease-out}
 .fab:active{transform:scale(.95)}
 .modal-overlay{position:fixed;inset:0;z-index:999;background:rgba(0,0,0,0.7);backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;padding:1.5rem;animation:fadeUp .2s ease}
 .modal{background:var(--bg2);border:1px solid var(--glass-border);border-radius:var(--radius);padding:1.5rem;width:100%;max-width:420px;max-height:90vh;overflow-y:auto;overflow-x:hidden;box-sizing:border-box}
-.modal-title{font-family:'Syne',sans-serif;font-size:20px;font-weight:700;margin-bottom:1.25rem;color:var(--text)}
+.modal-title{font-family:'Inter',sans-serif;font-size:20px;font-weight:700;margin-bottom:1.25rem;color:var(--text)}
 .modal-field{margin-bottom:1rem}
 .modal-label{font-size:11px;color:var(--text3);text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px;display:block}
-.modal-input{width:100%;box-sizing:border-box;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:10px;padding:10px 14px;color:var(--text);font-size:14px;font-family:'Instrument Sans',sans-serif}
+.modal-input{width:100%;box-sizing:border-box;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:10px;padding:10px 14px;color:var(--text);font-size:14px;font-family:'Inter',sans-serif}
 .modal-input:focus{outline:none;border-color:var(--accent)}
 .emoji-grid{display:flex;flex-wrap:wrap;gap:6px}
 .emoji-opt{width:40px;height:40px;border-radius:10px;border:2px solid transparent;background:rgba(255,255,255,0.06);display:flex;align-items:center;justify-content:center;font-size:22px;cursor:pointer;transition:border-color .12s,transform .12s}
@@ -369,7 +369,7 @@ input[type=checkbox]:checked{animation:checkRipple .4s ease-out}
 .geo-item:hover{background:rgba(255,255,255,0.06)}
 .geo-item-sub{font-size:11px;color:var(--text3)}
 .modal-actions{display:flex;gap:8px;margin-top:1.25rem}
-.modal-btn{flex:1;padding:12px;border-radius:10px;border:none;font-size:14px;font-weight:600;font-family:'Syne',sans-serif;cursor:pointer;transition:opacity .15s}
+.modal-btn{flex:1;padding:12px;border-radius:10px;border:none;font-size:14px;font-weight:600;font-family:'Inter',sans-serif;cursor:pointer;transition:opacity .15s}
 .modal-btn-primary{background:var(--accent);color:#fff}
 .modal-btn-secondary{background:rgba(255,255,255,0.08);color:var(--text2)}
 .modal-btn:hover{opacity:.85}
@@ -382,11 +382,11 @@ input[type=checkbox]:checked{animation:checkRipple .4s ease-out}
 .float-btn:active{transform:scale(.9)}
 .float-btn-photos{background:rgba(255,209,102,0.2);color:#ffd166}
 .float-btn-comments{background:rgba(100,180,255,0.2);color:#80c4ff}
-.float-badge{position:absolute;top:-4px;right:-4px;min-width:18px;height:18px;border-radius:99px;background:var(--accent);color:#fff;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;padding:0 4px;font-family:'Syne',sans-serif}
+.float-badge{position:absolute;top:-4px;right:-4px;min-width:18px;height:18px;border-radius:99px;background:var(--accent);color:#fff;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;padding:0 4px;font-family:'Inter',sans-serif}
 /* SUB PAGE */
 .sub-page{position:relative;z-index:1;max-width:780px;margin:0 auto;padding:1.5rem 1.25rem 5rem;padding-top:max(1.5rem,calc(env(safe-area-inset-top) + 1rem));padding-left:max(1.25rem,env(safe-area-inset-left));padding-right:max(1.25rem,env(safe-area-inset-right));animation:fadeUp .3s ease both}
 .sub-page-header{display:flex;align-items:center;gap:10px;margin-bottom:1.5rem}
-.sub-page-title{font-family:'Syne',sans-serif;font-size:20px;font-weight:700;flex:1}
+.sub-page-title{font-family:'Inter',sans-serif;font-size:20px;font-weight:700;flex:1}
 /* REORDER BTNS */
 .reorder-btns{display:flex;flex-direction:column;gap:0;flex-shrink:0;margin-right:2px}
 .reorder-btn{background:none;border:none;color:var(--text3);font-size:12px;cursor:pointer;padding:0 2px;line-height:1;transition:color .12s}
@@ -395,7 +395,7 @@ input[type=checkbox]:checked{animation:checkRipple .4s ease-out}
 .reorder-btn:disabled{opacity:.15;cursor:default}
 /* FILTER BAR */
 .filter-bar{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-bottom:10px;padding-bottom:8px;border-bottom:1px solid rgba(255,255,255,0.04)}
-.filter-pill{font-size:11px;padding:4px 10px;border-radius:99px;border:1px solid rgba(255,255,255,0.1);background:rgba(255,255,255,0.04);color:var(--text2);cursor:pointer;transition:all .12s;font-family:'Instrument Sans',sans-serif;white-space:nowrap}
+.filter-pill{font-size:11px;padding:4px 10px;border-radius:99px;border:1px solid rgba(255,255,255,0.1);background:rgba(255,255,255,0.04);color:var(--text2);cursor:pointer;transition:all .12s;font-family:'Inter',sans-serif;white-space:nowrap}
 .filter-pill.active{background:rgba(255,107,53,0.15);border-color:rgba(255,107,53,0.3);color:var(--accent)}
 .filter-pill:hover{background:rgba(255,255,255,0.08)}
 .sort-btn{background:none;border:1px solid rgba(255,255,255,0.1);border-radius:99px;color:var(--text3);font-size:12px;cursor:pointer;padding:4px 8px;margin-left:auto;transition:all .12s;white-space:nowrap}
@@ -405,20 +405,20 @@ input[type=checkbox]:checked{animation:checkRipple .4s ease-out}
 .settings-btn:hover{background:rgba(255,255,255,0.14)}
 /* SETTINGS MODAL */
 .settings-tabs{display:flex;gap:4px;margin-bottom:1.25rem;overflow-x:hidden;flex-wrap:wrap;padding-bottom:2px}
-.settings-tab{font-size:12px;padding:6px 12px;border-radius:99px;border:1px solid rgba(255,255,255,0.1);background:rgba(255,255,255,0.04);color:var(--text2);cursor:pointer;white-space:nowrap;font-family:'Syne',sans-serif;font-weight:500;transition:all .12s}
+.settings-tab{font-size:12px;padding:6px 12px;border-radius:99px;border:1px solid rgba(255,255,255,0.1);background:rgba(255,255,255,0.04);color:var(--text2);cursor:pointer;white-space:nowrap;font-family:'Inter',sans-serif;font-weight:500;transition:all .12s}
 .settings-tab.active{background:rgba(255,107,53,0.15);border-color:rgba(255,107,53,0.3);color:var(--accent)}
 .settings-list{display:flex;flex-direction:column;gap:6px}
 .settings-list-item{display:flex;align-items:center;gap:8px;padding:8px 10px;background:rgba(255,255,255,0.04);border-radius:8px}
-.settings-list-item input{flex:1;background:transparent;border:none;color:var(--text);font-size:13px;font-family:'Instrument Sans',sans-serif;padding:0}
+.settings-list-item input{flex:1;background:transparent;border:none;color:var(--text);font-size:13px;font-family:'Inter',sans-serif;padding:0}
 .settings-list-item input:focus{outline:none}
 .settings-list-item .pill-x{cursor:pointer;color:var(--text3);font-size:14px;transition:color .12s;flex-shrink:0}
 .settings-list-item .pill-x:hover{color:var(--danger)}
-.delete-event-btn{background:rgba(255,80,80,0.1);border:1px solid rgba(255,80,80,0.2);border-radius:8px;padding:6px 12px;color:var(--danger);font-size:11px;font-family:'Syne',sans-serif;font-weight:600;cursor:pointer;transition:opacity .15s;margin-top:6px}
+.delete-event-btn{background:rgba(255,80,80,0.1);border:1px solid rgba(255,80,80,0.2);border-radius:8px;padding:6px 12px;color:var(--danger);font-size:11px;font-family:'Inter',sans-serif;font-weight:600;cursor:pointer;transition:opacity .15s;margin-top:6px}
 .delete-event-btn:hover{opacity:.8}
 .install-overlay{position:fixed;inset:0;z-index:10000;background:rgba(0,0,0,.6);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);display:flex;align-items:center;justify-content:center;padding:1.5rem;animation:installFadeIn .3s ease both}
 .install-popup{background:rgba(22,22,34,.97);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border:1px solid rgba(255,255,255,.1);border-radius:20px;max-width:340px;width:100%;padding:2rem 1.5rem 1.5rem;text-align:center;animation:installScaleIn .35s cubic-bezier(.4,0,.2,1) both}
 .install-popup-icon{font-size:48px;margin-bottom:.75rem}
-.install-popup-title{font-family:'Syne',sans-serif;font-size:18px;font-weight:700;color:#fff;margin-bottom:.25rem}
+.install-popup-title{font-family:'Inter',sans-serif;font-size:18px;font-weight:700;color:#fff;margin-bottom:.25rem}
 .install-popup-subtitle{font-size:13px;color:rgba(255,255,255,.45);margin-bottom:1.25rem}
 .install-steps{text-align:left;margin-bottom:1.25rem}
 .install-step{display:flex;align-items:flex-start;gap:10px;padding:.6rem 0;border-bottom:1px solid rgba(255,255,255,.06)}
@@ -426,9 +426,9 @@ input[type=checkbox]:checked{animation:checkRipple .4s ease-out}
 .install-step-num{width:24px;height:24px;border-radius:50%;background:#ff6b35;color:#fff;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
 .install-step-text{font-size:13px;color:rgba(255,255,255,.8);line-height:1.4}
 .install-step-text strong{color:#fff}
-.install-popup-btn{background:#ff6b35;color:#fff;border:none;border-radius:12px;padding:12px 24px;font-size:15px;font-weight:700;cursor:pointer;font-family:'Syne',sans-serif;width:100%;margin-bottom:.75rem;transition:opacity .2s}
+.install-popup-btn{background:#ff6b35;color:#fff;border:none;border-radius:12px;padding:12px 24px;font-size:15px;font-weight:700;cursor:pointer;font-family:'Inter',sans-serif;width:100%;margin-bottom:.75rem;transition:opacity .2s}
 .install-popup-btn:active{opacity:.8}
-.install-popup-dismiss{background:none;border:none;color:rgba(255,255,255,.35);font-size:13px;cursor:pointer;padding:4px;font-family:'Instrument Sans',sans-serif}
+.install-popup-dismiss{background:none;border:none;color:rgba(255,255,255,.35);font-size:13px;cursor:pointer;padding:4px;font-family:'Inter',sans-serif}
 @keyframes installFadeIn{from{opacity:0}to{opacity:1}}
 @keyframes installScaleIn{from{opacity:0;transform:scale(.9)}to{opacity:1;transform:scale(1)}}
 </style>
@@ -546,7 +546,7 @@ input[type=checkbox]:checked{animation:checkRipple .4s ease-out}
     </div>
     <div style="margin-bottom:10px;display:flex;align-items:center;gap:8px">
       <span style="font-size:11px;color:var(--text3)">Il tuo nome:</span>
-      <input type="text" v-model="photoAuthor" placeholder="es. Bruno" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:7px;padding:3px 8px;color:var(--text);font-size:12px;width:120px;font-family:'Instrument Sans',sans-serif">
+      <input type="text" v-model="photoAuthor" placeholder="es. Bruno" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:7px;padding:3px 8px;color:var(--text);font-size:12px;width:120px;font-family:'Inter',sans-serif">
     </div>
     <input type="file" accept="image/*" ref="photoInputRef" @change="handlePhotoUpload" style="display:none">
     <div class="photo-upload-area" @click="$refs.photoInputRef.click()">
@@ -597,7 +597,7 @@ input[type=checkbox]:checked{animation:checkRipple .4s ease-out}
     </div>
     <div style="margin:12px 0 8px;display:flex;align-items:center;gap:8px">
       <span style="font-size:11px;color:var(--text3)">Il tuo nome:</span>
-      <input type="text" v-model="commentAuthor" placeholder="es. Bruno" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:7px;padding:3px 8px;color:var(--text);font-size:12px;width:120px;font-family:'Instrument Sans',sans-serif">
+      <input type="text" v-model="commentAuthor" placeholder="es. Bruno" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:7px;padding:3px 8px;color:var(--text);font-size:12px;width:120px;font-family:'Inter',sans-serif">
     </div>
     <div class="comment-input-row">
       <textarea class="comment-input" v-model="commentText" rows="2" placeholder="Scrivi una nota per il gruppo..." @keyup.ctrl.enter="addComment"></textarea>
@@ -958,9 +958,9 @@ input[type=checkbox]:checked{animation:checkRipple .4s ease-out}
           <div style="display:flex;align-items:center;gap:4px">
             <span style="font-size:14px;color:var(--text2)">€</span>
             <input type="number" v-model.number="splitTotal" @input="applySplit" min="0" step="1"
-              style="width:80px;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);border-radius:8px;padding:6px 10px;color:var(--text);font-family:'Syne',sans-serif;font-size:16px;font-weight:700;text-align:right">
+              style="width:80px;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);border-radius:8px;padding:6px 10px;color:var(--text);font-family:'Inter',sans-serif;font-size:16px;font-weight:700;text-align:right">
           </div>
-          <button @click="applySplit" style="background:rgba(255,107,53,0.15);border:1px solid rgba(255,107,53,0.3);border-radius:8px;padding:5px 12px;color:var(--accent);font-size:12px;font-family:'Syne',sans-serif;font-weight:600;cursor:pointer;transition:opacity .15s">
+          <button @click="applySplit" style="background:rgba(255,107,53,0.15);border:1px solid rgba(255,107,53,0.3);border-radius:8px;padding:5px 12px;color:var(--accent);font-size:12px;font-family:'Inter',sans-serif;font-weight:600;cursor:pointer;transition:opacity .15s">
             Dividi equo (€{{ splitPerPerson }}/persona)
           </button>
         </div>
@@ -976,7 +976,7 @@ input[type=checkbox]:checked{animation:checkRipple .4s ease-out}
           <div style="display:flex;align-items:center;gap:4px">
             <span style="font-size:13px;color:var(--text2)">€</span>
             <input type="number" :value="getPayment(p.id).quota" @input="setQuota(p.id,$event.target.value)" min="0" step="1"
-              style="width:56px;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);border-radius:8px;padding:4px 6px;color:var(--text);font-family:'Syne',sans-serif;font-size:14px;font-weight:600;text-align:right">
+              style="width:56px;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);border-radius:8px;padding:4px 6px;color:var(--text);font-family:'Inter',sans-serif;font-size:14px;font-weight:600;text-align:right">
           </div>
           <label style="display:flex;align-items:center;gap:5px;cursor:pointer;font-size:12px;color:var(--text2)">
             <input type="checkbox" :checked="getPayment(p.id).paid" @change="togglePaid(p.id,$event.target.checked)">
@@ -986,15 +986,15 @@ input[type=checkbox]:checked{animation:checkRipple .4s ease-out}
         <div style="margin-top:10px;padding-top:10px;border-top:1px solid rgba(255,255,255,0.06);display:flex;flex-direction:column;gap:6px;font-size:13px">
           <div style="display:flex;justify-content:space-between">
             <span style="color:var(--text2)">Totale atteso</span>
-            <span style="font-family:'Syne',sans-serif;font-weight:600;color:var(--accent2)">€{{ paymentTotal }}</span>
+            <span style="font-family:'Inter',sans-serif;font-weight:600;color:var(--accent2)">€{{ paymentTotal }}</span>
           </div>
           <div style="display:flex;justify-content:space-between">
             <span style="color:var(--text2)">Raccolto</span>
-            <span style="font-family:'Syne',sans-serif;font-weight:600;color:var(--accent3)">€{{ paymentCollected }}</span>
+            <span style="font-family:'Inter',sans-serif;font-weight:600;color:var(--accent3)">€{{ paymentCollected }}</span>
           </div>
           <div style="display:flex;justify-content:space-between" v-if="paymentTotal - paymentCollected > 0">
             <span style="color:var(--text2)">Mancano</span>
-            <span style="font-family:'Syne',sans-serif;font-weight:600;color:var(--danger)">€{{ paymentTotal - paymentCollected }}</span>
+            <span style="font-family:'Inter',sans-serif;font-weight:600;color:var(--danger)">€{{ paymentTotal - paymentCollected }}</span>
           </div>
         </div>
       </div></div>
