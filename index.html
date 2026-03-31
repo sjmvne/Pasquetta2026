@@ -34,6 +34,7 @@ body{background:var(--bg);color:var(--text);font-family:'Instrument Sans',sans-s
 .wrap{
   position:relative;z-index:1;max-width:780px;margin:0 auto;
   padding:2.5rem 1.25rem 5rem;
+  padding-top:max(2.5rem,calc(env(safe-area-inset-top) + 1rem));
   padding-bottom:max(5rem,calc(env(safe-area-inset-bottom) + 3rem));
   padding-left:max(1.25rem,env(safe-area-inset-left));
   padding-right:max(1.25rem,env(safe-area-inset-right));
@@ -312,7 +313,7 @@ input[type=checkbox]:checked{animation:checkRipple .4s ease-out}
 
 /* MOBILE */
 @media(max-width:600px){
-  .wrap{padding:1.5rem .9rem 7rem;padding-bottom:max(7rem,calc(env(safe-area-inset-bottom)+5rem))}
+  .wrap{padding:1.5rem .9rem 7rem;padding-top:max(1.5rem,calc(env(safe-area-inset-top) + 1rem));padding-bottom:max(7rem,calc(env(safe-area-inset-bottom)+5rem))}
   .page-title{font-size:26px;letter-spacing:-.5px}
   .page-emoji{font-size:40px}
   .section-header{padding:1rem;min-height:48px}
@@ -334,7 +335,7 @@ input[type=checkbox]:checked{animation:checkRipple .4s ease-out}
   .comment-del{opacity:.4}
 }
 /* HOME */
-.home-wrap{position:relative;z-index:1;max-width:780px;margin:0 auto;padding:2.5rem 1.25rem 5rem;padding-left:max(1.25rem,env(safe-area-inset-left));padding-right:max(1.25rem,env(safe-area-inset-right))}
+.home-wrap{position:relative;z-index:1;max-width:780px;margin:0 auto;padding:2.5rem 1.25rem 5rem;padding-top:max(2.5rem,calc(env(safe-area-inset-top) + 1rem));padding-left:max(1.25rem,env(safe-area-inset-left));padding-right:max(1.25rem,env(safe-area-inset-right))}
 .event-list{display:flex;flex-direction:column;gap:10px;margin-top:1.5rem}
 .event-card{background:var(--glass);border:1px solid var(--glass-border);border-radius:var(--radius);padding:1.1rem 1.25rem;backdrop-filter:blur(16px);cursor:pointer;transition:background .15s,transform .12s;display:flex;align-items:center;gap:14px;animation:fadeUp .5s ease both}
 .event-card:hover{background:var(--glass-hover)}
@@ -351,7 +352,7 @@ input[type=checkbox]:checked{animation:checkRipple .4s ease-out}
 .fab:hover{transform:scale(1.08)}
 .fab:active{transform:scale(.95)}
 .modal-overlay{position:fixed;inset:0;z-index:999;background:rgba(0,0,0,0.7);backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;padding:1.5rem;animation:fadeUp .2s ease}
-.modal{background:var(--bg2);border:1px solid var(--glass-border);border-radius:var(--radius);padding:1.5rem;width:100%;max-width:420px;max-height:90vh;overflow-y:auto}
+.modal{background:var(--bg2);border:1px solid var(--glass-border);border-radius:var(--radius);padding:1.5rem;width:100%;max-width:420px;max-height:90vh;overflow-y:auto;overflow-x:hidden;box-sizing:border-box}
 .modal-title{font-family:'Syne',sans-serif;font-size:20px;font-weight:700;margin-bottom:1.25rem;color:var(--text)}
 .modal-field{margin-bottom:1rem}
 .modal-label{font-size:11px;color:var(--text3);text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px;display:block}
@@ -383,7 +384,7 @@ input[type=checkbox]:checked{animation:checkRipple .4s ease-out}
 .float-btn-comments{background:rgba(100,180,255,0.2);color:#80c4ff}
 .float-badge{position:absolute;top:-4px;right:-4px;min-width:18px;height:18px;border-radius:99px;background:var(--accent);color:#fff;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;padding:0 4px;font-family:'Syne',sans-serif}
 /* SUB PAGE */
-.sub-page{position:relative;z-index:1;max-width:780px;margin:0 auto;padding:1.5rem 1.25rem 5rem;padding-left:max(1.25rem,env(safe-area-inset-left));padding-right:max(1.25rem,env(safe-area-inset-right));animation:fadeUp .3s ease both}
+.sub-page{position:relative;z-index:1;max-width:780px;margin:0 auto;padding:1.5rem 1.25rem 5rem;padding-top:max(1.5rem,calc(env(safe-area-inset-top) + 1rem));padding-left:max(1.25rem,env(safe-area-inset-left));padding-right:max(1.25rem,env(safe-area-inset-right));animation:fadeUp .3s ease both}
 .sub-page-header{display:flex;align-items:center;gap:10px;margin-bottom:1.5rem}
 .sub-page-title{font-family:'Syne',sans-serif;font-size:20px;font-weight:700;flex:1}
 /* REORDER BTNS */
@@ -400,10 +401,10 @@ input[type=checkbox]:checked{animation:checkRipple .4s ease-out}
 .sort-btn{background:none;border:1px solid rgba(255,255,255,0.1);border-radius:99px;color:var(--text3);font-size:12px;cursor:pointer;padding:4px 8px;margin-left:auto;transition:all .12s;white-space:nowrap}
 .sort-btn.asc,.sort-btn.desc{border-color:rgba(255,107,53,0.3);color:var(--accent)}
 /* SETTINGS BTN */
-.settings-btn{background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.1);border-radius:50%;width:32px;height:32px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:16px;transition:background .12s;flex-shrink:0;margin-left:auto}
+.settings-btn{background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.1);border-radius:50%;width:32px;height:32px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:16px;transition:background .12s;flex-shrink:0;margin-left:auto;color:#fff}
 .settings-btn:hover{background:rgba(255,255,255,0.14)}
 /* SETTINGS MODAL */
-.settings-tabs{display:flex;gap:4px;margin-bottom:1.25rem;overflow-x:auto;padding-bottom:2px}
+.settings-tabs{display:flex;gap:4px;margin-bottom:1.25rem;overflow-x:hidden;flex-wrap:wrap;padding-bottom:2px}
 .settings-tab{font-size:12px;padding:6px 12px;border-radius:99px;border:1px solid rgba(255,255,255,0.1);background:rgba(255,255,255,0.04);color:var(--text2);cursor:pointer;white-space:nowrap;font-family:'Syne',sans-serif;font-weight:500;transition:all .12s}
 .settings-tab.active{background:rgba(255,107,53,0.15);border-color:rgba(255,107,53,0.3);color:var(--accent)}
 .settings-list{display:flex;flex-direction:column;gap:6px}
@@ -1040,10 +1041,7 @@ input[type=checkbox]:checked{animation:checkRipple .4s ease-out}
     </div>
     -->
 
-    <!-- DELETE EVENT -->
-    <div style="text-align:center;margin-top:2rem;margin-bottom:2rem">
-      <button class="delete-event-btn" @click="deleteEvent">🗑️ Elimina evento</button>
-    </div>
+    <!-- DELETE EVENT (disabled) -->
 
     <!-- SETTINGS MODAL -->
     <teleport to="body">
