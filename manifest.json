@@ -2,7 +2,7 @@
   "name": "Get Sh*t Done - Event Organizer",
   "short_name": "GSD",
   "description": "Organizza i tuoi eventi come si deve",
-  "start_url": "/index.html",
+  "start_url": "./index.html",
   "display": "standalone",
   "background_color": "#0a0a0f",
   "theme_color": "#0a0a0f",

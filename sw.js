@@ -1,5 +1,5 @@
-const CACHE = 'gsd-v4';
-const PRECACHE = ['/', '/index.html'];
+const CACHE = 'gsd-v5';
+const PRECACHE = ['./', './index.html'];
 
 self.addEventListener('install', e => {
   e.waitUntil(caches.open(CACHE).then(c => c.addAll(PRECACHE)));
