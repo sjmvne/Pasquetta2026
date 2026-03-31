@@ -1,4 +1,4 @@
-const CACHE = 'gsd-v5';
+const CACHE = 'gsd-v6';
 const PRECACHE = ['./', './index.html'];
 
 self.addEventListener('install', e => {
