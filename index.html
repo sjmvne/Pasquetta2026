@@ -474,7 +474,7 @@ input[type=checkbox]:checked{animation:checkRipple .4s ease-out}
     <div class="page-header">
       <div class="page-emoji"><svg viewBox="0 0 64 64" width="52" height="52" xmlns="http://www.w3.org/2000/svg"><rect x="12" y="10" width="40" height="48" rx="6" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.15)" stroke-width="1.5"/><rect x="22" y="6" width="20" height="10" rx="4" fill="#ff6b35"/><text x="32" y="42" text-anchor="middle" font-size="22">💩</text><line x1="20" y1="50" x2="36" y2="50" stroke="rgba(255,255,255,0.2)" stroke-width="1.5" stroke-linecap="round"/><line x1="20" y1="54" x2="30" y2="54" stroke="rgba(255,255,255,0.12)" stroke-width="1.5" stroke-linecap="round"/></svg></div>
       <div class="page-title">Get Sh*t Done</div>
-      <div class="page-sub" style="color:var(--text2);font-size:13px;line-height:1.5;max-width:320px;margin:6px auto 0">Organizza eventi, gestisci partecipanti, spese e materiali — tutto in un posto solo.</div>
+      <div class="page-sub" style="color:var(--text2);font-size:13px;line-height:1.5;">Organizza eventi, gestisci partecipanti, spese e materiali — tutto in un posto solo.</div>
     </div>
     <div v-if="!eventList.length" class="empty-home">
       <div class="empty-home-icon">📋</div>
@@ -2212,7 +2212,7 @@ createApp({
     const isIOS = /iPad|iPhone|iPod/.test(ua) && !window.MSStream;
     const isStandalone = window.matchMedia('(display-mode: standalone)').matches || navigator.standalone;
     if (isIOS) installType.value = 'ios';
-    if (!isStandalone && !localStorage.getItem('install-dismissed')) {
+    if (!isStandalone && !localStorage.getItem('install-dismissed-v2')) {
       if (isIOS) { showInstall.value = true; }
       window.addEventListener('beforeinstallprompt', e => {
         e.preventDefault();
@@ -2228,7 +2228,7 @@ createApp({
     }
     function dismissInstall() {
       showInstall.value = false;
-      localStorage.setItem('install-dismissed', '1');
+      localStorage.setItem('install-dismissed-v2', '1');
     }
 
     return {
