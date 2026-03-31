@@ -49,6 +49,26 @@ body{background:var(--bg);color:var(--text);font-family:'Instrument Sans',sans-s
 .progress-fill::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.3),transparent);animation:shimmer 2s infinite}
 .progress-label{font-size:12px;color:var(--text2);width:32px;text-align:right;flex-shrink:0}
 
+/* WEATHER WIDGET */
+.weather-card{background:var(--glass);border:1px solid var(--glass-border);border-radius:var(--radius);padding:1rem 1.25rem;backdrop-filter:blur(16px);margin-bottom:1.5rem;animation:fadeUp .5s ease both;display:flex;align-items:center;gap:16px;overflow:hidden;position:relative;flex-wrap:wrap}
+.weather-card::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(6,214,160,0.06),rgba(255,209,102,0.04),transparent 60%);pointer-events:none}
+.weather-icon{font-size:48px;line-height:1;filter:drop-shadow(0 4px 12px rgba(255,209,102,0.3));animation:weatherFloat 3s ease-in-out infinite}
+@keyframes weatherFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
+.weather-info{flex:1;min-width:0}
+.weather-date{font-family:'Syne',sans-serif;font-size:15px;font-weight:600;color:var(--text);letter-spacing:-.2px}
+.weather-desc{font-size:12px;color:var(--text2);margin-top:2px;text-transform:capitalize}
+.weather-details{display:flex;gap:14px;margin-top:6px;flex-wrap:wrap}
+.weather-detail{font-size:11px;color:var(--text3);display:flex;align-items:center;gap:4px}
+.weather-detail span{font-size:13px}
+.weather-temp{font-family:'Syne',sans-serif;font-size:32px;font-weight:700;color:var(--text);flex-shrink:0;line-height:1}
+.weather-temp small{font-size:14px;font-weight:400;color:var(--text2)}
+.weather-loading{font-size:12px;color:var(--text3);display:flex;align-items:center;gap:8px}
+.weather-loading .dot-pulse{display:inline-flex;gap:3px}
+.weather-loading .dot-pulse span{width:4px;height:4px;border-radius:50%;background:var(--text3);animation:dotPulse .8s ease-in-out infinite}
+.weather-loading .dot-pulse span:nth-child(2){animation-delay:.15s}
+.weather-loading .dot-pulse span:nth-child(3){animation-delay:.3s}
+@keyframes dotPulse{0%,100%{opacity:.3;transform:scale(.8)}50%{opacity:1;transform:scale(1.2)}}
+
 /* SYNC BAR */
 .sync-bar{display:flex;align-items:center;gap:8px;background:var(--glass);border:1px solid var(--glass-border);border-radius:var(--radius-sm);padding:8px 14px;font-size:12px;color:var(--text2);margin-bottom:1.5rem;backdrop-filter:blur(12px)}
 .sync-dot{width:7px;height:7px;border-radius:50%;background:var(--accent3);flex-shrink:0;animation:pulse 2s infinite}
@@ -80,7 +100,14 @@ body{background:var(--bg);color:var(--text);font-family:'Instrument Sans',sans-s
 .section-inner{overflow:hidden;border-top:1px solid var(--glass-border);padding:0}
 .section-body.open .section-inner{padding:1rem 1.1rem 1.1rem}
 
-/* LIST ITEMS */
+/* LIST ITEMS + SWIPE */
+.swipe-wrap{position:relative;overflow:hidden;border-radius:8px}
+.swipe-wrap+.swipe-wrap{border-top:1px solid rgba(255,255,255,0.03)}
+.swipe-content{display:flex;align-items:center;gap:10px;padding:8px 6px;border-radius:8px;transition:transform .25s ease;position:relative;background:transparent;z-index:1}
+.swipe-content:hover{background:rgba(255,255,255,0.04)}
+.swipe-delete{position:absolute;right:0;top:0;bottom:0;width:72px;display:flex;align-items:center;justify-content:center;z-index:0;cursor:pointer;user-select:none;opacity:0;transition:opacity .15s ease}
+.swipe-delete .del-icon{width:40px;height:40px;border-radius:50%;background:rgba(255,60,60,0.15);display:flex;align-items:center;justify-content:center;font-size:18px;transition:background .2s,transform .2s}
+.swipe-delete.ready .del-icon{background:rgba(255,60,60,0.9);transform:scale(1.1)}
 .list-item{display:flex;align-items:center;gap:10px;padding:8px 6px;border-radius:8px;transition:background .12s;position:relative}
 .list-item:hover{background:rgba(255,255,255,0.04)}
 .list-item+.list-item{border-top:1px solid rgba(255,255,255,0.03)}
@@ -144,10 +171,9 @@ select.sel:focus{outline:none;border-color:var(--accent)}
 .mini-add button{width:28px;height:28px;border-radius:50%;background:rgba(255,107,53,0.2);border:none;color:var(--accent);font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:transform .15s}
 .mini-add button:hover{transform:scale(1.1)}
 
-/* DELETE BTN */
-.btn-del{width:24px;height:24px;border-radius:50%;background:rgba(255,80,80,0.1);border:none;color:var(--danger);font-size:14px;cursor:pointer;opacity:0;transition:opacity .15s,transform .15s;flex-shrink:0;display:flex;align-items:center;justify-content:center}
-.list-item:hover .btn-del{opacity:1}
-.btn-del:active{transform:scale(.9)}
+/* DELETE BTN (desktop hover fallback) */
+.btn-del{width:24px;height:24px;border-radius:50%;background:rgba(255,80,80,0.1);border:none;color:var(--danger);font-size:14px;cursor:pointer;opacity:0;transition:opacity .15s,transform .15s;flex-shrink:0;display:none;align-items:center;justify-content:center}
+@media(min-width:601px){.btn-del{display:flex}.list-item:hover .btn-del,.swipe-content:hover .btn-del{opacity:1}.btn-del:active{transform:scale(.9)}}
 
 /* PILL ITEM (editable menu item) */
 .pill-item{display:inline-flex;align-items:center;gap:3px;margin:3px}
@@ -213,6 +239,49 @@ hr.div{border:none;border-top:1px solid var(--glass-border);margin:10px 0}
 .priority-toggle{cursor:pointer;user-select:none;transition:transform .12s}
 .priority-toggle:active{transform:scale(.92)}
 
+/* WEATHER HOURS */
+.weather-hours{display:flex;gap:4px;margin-top:10px;overflow-x:auto;padding:4px 0 2px;scroll-snap-type:x mandatory;-ms-overflow-style:none;scrollbar-width:none}
+.weather-hours::-webkit-scrollbar{display:none}
+.weather-hour{display:flex;flex-direction:column;align-items:center;min-width:46px;padding:6px 4px;border-radius:10px;background:rgba(255,255,255,0.04);scroll-snap-align:start;flex-shrink:0}
+.weather-hour-time{font-size:10px;color:var(--text3);font-weight:500}
+.weather-hour-icon{font-size:18px;margin:2px 0}
+.weather-hour-temp{font-size:12px;font-weight:600;color:var(--text)}
+
+/* PHOTO WALL */
+.photo-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:6px;margin-top:10px}
+.photo-thumb{aspect-ratio:1;border-radius:10px;overflow:hidden;cursor:pointer;position:relative;background:rgba(255,255,255,0.04)}
+.photo-thumb img{width:100%;height:100%;object-fit:cover;transition:transform .2s}
+.photo-thumb:active img{transform:scale(1.03)}
+.photo-overlay{position:absolute;bottom:0;left:0;right:0;padding:6px 8px;background:linear-gradient(transparent,rgba(0,0,0,0.7));font-size:10px;color:rgba(255,255,255,0.8);font-weight:500}
+.photo-upload-area{display:flex;align-items:center;justify-content:center;gap:10px;padding:18px;border:2px dashed rgba(255,255,255,0.12);border-radius:12px;cursor:pointer;transition:background .15s,border-color .15s;color:var(--text2);font-size:13px;user-select:none}
+.photo-upload-area:active{background:rgba(255,255,255,0.06);border-color:var(--accent)}
+.photo-upload-icon{font-size:28px}
+.photo-progress{height:3px;background:rgba(255,255,255,0.08);border-radius:99px;margin-top:8px;overflow:hidden}
+.photo-progress-fill{height:100%;border-radius:99px;background:linear-gradient(90deg,var(--accent),var(--accent2));transition:width .3s ease}
+.lightbox{position:fixed;inset:0;z-index:999;background:rgba(0,0,0,0.95);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px;animation:fadeUp .2s ease}
+.lightbox img{max-width:95vw;max-height:75vh;object-fit:contain;border-radius:10px}
+.lightbox-info{margin-top:12px;font-size:12px;color:var(--text2);text-align:center}
+.lightbox-actions{display:flex;gap:12px;margin-top:16px}
+.lightbox-btn{display:flex;align-items:center;gap:6px;padding:10px 20px;border-radius:12px;border:none;font-size:13px;font-weight:600;font-family:'Syne',sans-serif;cursor:pointer;transition:transform .12s}
+.lightbox-btn:active{transform:scale(.95)}
+.lightbox-btn-download{background:var(--accent);color:#fff}
+.lightbox-btn-close{background:rgba(255,255,255,0.1);color:var(--text)}
+
+/* PLAYLIST */
+.playlist-item{display:flex;align-items:center;gap:10px;padding:8px 6px}
+.platform-badge{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
+.platform-spotify{background:rgba(30,215,96,0.15)}
+.platform-apple{background:rgba(252,60,68,0.15)}
+.platform-other{background:rgba(255,255,255,0.08)}
+.song-info{flex:1;min-width:0}
+.song-title{font-size:13px;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.song-added{font-size:10px;color:var(--text3)}
+.btn-open{padding:4px 12px;border-radius:99px;border:none;font-size:11px;font-weight:600;cursor:pointer;flex-shrink:0;transition:transform .12s}
+.btn-open:active{transform:scale(.93)}
+.btn-open-spotify{background:rgba(30,215,96,0.2);color:#1DB954}
+.btn-open-apple{background:rgba(252,60,68,0.2);color:#fc3c4c}
+.btn-open-other{background:rgba(255,255,255,0.1);color:var(--text2)}
+
 /* MOBILE */
 @media(max-width:600px){
   .wrap{padding:1.5rem .9rem 7rem;padding-bottom:max(7rem,calc(env(safe-area-inset-bottom)+5rem))}
@@ -234,6 +303,7 @@ hr.div{border:none;border-top:1px solid var(--glass-border);margin:10px 0}
   select.sel{font-size:16px;padding:6px 8px}
   input[type=number],input[type=text],.edit-inline,.add-row input,.mini-add input{font-size:16px}
   .fondi-row{flex-wrap:wrap;gap:6px;min-height:48px}
+  .photo-grid{grid-template-columns:repeat(auto-fill,minmax(100px,1fr))}
   .blob1{width:280px;height:280px}.blob2{width:240px;height:240px}.blob3{width:180px;height:180px}
   .s-title{font-size:13px}
   .sync-bar{font-size:11px}
@@ -252,11 +322,50 @@ hr.div{border:none;border-top:1px solid var(--glass-border);margin:10px 0}
     <div class="page-header">
       <div class="page-emoji">🐣</div>
       <div class="page-title">Pasquetta 2026</div>
-      <div class="page-sub">Organizzazione completa · tutto editabile in tempo reale</div>
+      <div class="page-sub">📅 Lunedì 6 Aprile 2026 · Limbiate</div>
       <div class="progress-wrap">
         <div class="progress-track"><div class="progress-fill" :style="{width: globalProgress+'%'}"></div></div>
         <div class="progress-label">{{ globalProgress }}%</div>
       </div>
+    </div>
+
+    <!-- WEATHER -->
+    <div class="weather-card">
+      <template v-if="weather.loaded">
+        <div class="weather-icon">{{ weather.icon }}</div>
+        <div class="weather-info">
+          <div class="weather-date">Meteo Pasquetta</div>
+          <div class="weather-desc">{{ weather.desc }}</div>
+          <div class="weather-details">
+            <div class="weather-detail"><span>💧</span> {{ weather.rain }}mm</div>
+            <div class="weather-detail"><span>💨</span> {{ weather.wind }}km/h</div>
+            <div class="weather-detail"><span>☀️</span> UV {{ weather.uv }}</div>
+            <div class="weather-detail"><span>🌡️</span> {{ weather.min }}°–{{ weather.max }}°</div>
+          </div>
+        </div>
+        <div class="weather-temp">{{ weather.temp }}<small>°C</small></div>
+      </template>
+      <template v-if="weather.loaded && weather.hours.length">
+        <div class="weather-hours" style="width:100%">
+          <div v-for="h in weather.hours" :key="h.time" class="weather-hour">
+            <span class="weather-hour-time">{{ h.time }}</span>
+            <span class="weather-hour-icon">{{ h.icon }}</span>
+            <span class="weather-hour-temp">{{ h.temp }}°</span>
+          </div>
+        </div>
+      </template>
+      <template v-else-if="weather.error">
+        <div class="weather-icon">⛅</div>
+        <div class="weather-info">
+          <div class="weather-date">Meteo Pasquetta</div>
+          <div class="weather-desc" style="color:var(--text3)">{{ weather.error }}</div>
+        </div>
+      </template>
+      <template v-else>
+        <div class="weather-loading">
+          Caricamento meteo <div class="dot-pulse"><span></span><span></span><span></span></div>
+        </div>
+      </template>
     </div>
 
     <!-- SYNC -->
@@ -291,6 +400,48 @@ hr.div{border:none;border-top:1px solid var(--glass-border);margin:10px 0}
       </div>
     </div>
 
+    <!-- ===================== MURO FOTO ===================== -->
+    <div class="section">
+      <div class="section-header" @click="toggle('photos')">
+        <span class="s-icon">📸</span>
+        <span class="s-title">Muro Foto</span>
+        <span class="s-badge">{{ photos.length }} foto</span>
+        <span class="s-chevron" :class="{open:open.photos}">▶</span>
+      </div>
+      <div class="section-body" :class="{open:open.photos}"><div class="section-inner">
+        <div style="margin-bottom:10px;display:flex;align-items:center;gap:8px">
+          <span style="font-size:11px;color:var(--text3)">Il tuo nome:</span>
+          <input type="text" v-model="photoAuthor" placeholder="es. Bruno"
+            style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:7px;padding:3px 8px;color:var(--text);font-size:12px;width:120px;font-family:'Instrument Sans',sans-serif">
+        </div>
+        <input type="file" accept="image/*" ref="photoInputRef" @change="handlePhotoUpload" style="display:none">
+        <div class="photo-upload-area" @click="$refs.photoInputRef.click()">
+          <span class="photo-upload-icon">📷</span>
+          <span>Carica una foto</span>
+        </div>
+        <div v-if="photoUploading" class="photo-progress" style="margin-top:8px">
+          <div class="photo-progress-fill" :style="{width:photoProgress+'%'}"></div>
+        </div>
+        <div v-if="!photos.length && !photoUploading" class="empty-state" style="margin-top:12px">Nessuna foto ancora. Sii il primo a condividere!</div>
+        <div v-if="photos.length" class="photo-grid">
+          <div v-for="p in photos" :key="p.id" class="photo-thumb" @click="openLightbox(p)">
+            <img :src="p.url" loading="lazy">
+            <div class="photo-overlay">{{ p.author }}</div>
+          </div>
+        </div>
+        <teleport to="body">
+          <div v-if="lightboxPhoto" class="lightbox" @click.self="closeLightbox()">
+            <img :src="lightboxPhoto.url">
+            <div class="lightbox-info">{{ lightboxPhoto.author }} · {{ new Date(lightboxPhoto.timestamp).toLocaleString('it-IT',{day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'}) }}</div>
+            <div class="lightbox-actions">
+              <button class="lightbox-btn lightbox-btn-download" @click="downloadPhoto(lightboxPhoto)">⬇️ Scarica</button>
+              <button class="lightbox-btn lightbox-btn-close" @click="closeLightbox()">✕ Chiudi</button>
+            </div>
+          </div>
+        </teleport>
+      </div></div>
+    </div>
+
     <!-- ===================== PARTECIPANTI ===================== -->
     <div class="section">
       <div class="section-header" @click="toggle('participants')">
@@ -301,19 +452,22 @@ hr.div{border:none;border-top:1px solid var(--glass-border);margin:10px 0}
       </div>
       <div class="section-body" :class="{open:open.participants}"><div class="section-inner">
         <div v-if="!participants.length" class="empty-state">Nessun partecipante. Aggiungi il primo!</div>
-        <div v-for="(p,i) in participants" :key="p.id" class="list-item" style="align-items:flex-start">
-          <span class="avatar" :class="'av'+(i%8)" style="margin-top:4px">{{ initials(p.name) }}</span>
-          <div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:2px">
-            <input class="edit-inline" v-model="p.name" style="font-weight:500" @change="scheduleSave">
-            <div style="display:flex;gap:6px;flex-wrap:wrap;align-items:center">
-              <select class="sel" v-model="p.panino" @change="scheduleSave" style="flex:none">
-                <option v-for="o in paninoOpts" :key="o" :value="o">🍔 {{ o }}</option>
-              </select>
-              <input class="edit-inline" v-model="p.allergies" placeholder="⚠️ Allergie/intolleranze..." style="font-size:11px;color:var(--accent);padding:1px 6px;flex:1;min-width:100px" @change="scheduleSave">
+        <div v-for="(p,i) in participants" :key="p.id" class="swipe-wrap" @touchstart="swipeStart" @touchmove="swipeMove" @touchend="swipeEnd($event,'participants',p.id)">
+          <div class="swipe-content" style="align-items:flex-start">
+            <span class="avatar" :class="'av'+(i%8)" style="margin-top:4px">{{ initials(p.name) }}</span>
+            <div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:2px">
+              <input class="edit-inline" v-model="p.name" style="font-weight:500" @change="scheduleSave">
+              <div style="display:flex;gap:6px;flex-wrap:wrap;align-items:center">
+                <select class="sel" v-model="p.panino" @change="scheduleSave" style="flex:none">
+                  <option v-for="o in paninoOpts" :key="o" :value="o">{{ pollEmoji(o) }} {{ o }}</option>
+                </select>
+                <input class="edit-inline" v-model="p.allergies" placeholder="⚠️ Allergie/intolleranze..." style="font-size:11px;color:var(--accent);padding:1px 6px;flex:1;min-width:100px" @change="scheduleSave">
+              </div>
+              <input class="edit-inline" v-model="p.note" placeholder="📝 Note..." style="font-size:11px;color:var(--text2);padding:1px 6px" @change="scheduleSave">
             </div>
-            <input class="edit-inline" v-model="p.note" placeholder="📝 Note..." style="font-size:11px;color:var(--text2);padding:1px 6px" @change="scheduleSave">
+            <button class="btn-del" style="margin-top:4px" @click="removeItem('participants',p.id)">×</button>
           </div>
-          <button class="btn-del" style="margin-top:4px" @click="removeItem('participants',p.id)">×</button>
+          <div class="swipe-delete" @click="removeItem('participants',p.id)"><span class="del-icon">🗑️</span></div>
         </div>
         <div class="add-row">
           <input v-model="newFields.participant" placeholder="Nome nuovo partecipante..." @keyup.enter="addParticipant">
@@ -332,26 +486,33 @@ hr.div{border:none;border-top:1px solid var(--glass-border);margin:10px 0}
       </div>
       <div class="section-body" :class="{open:open.tasks}"><div class="section-inner">
         <div v-if="!tasks.length" class="empty-state">Nessun task. Aggiungi il primo!</div>
-        <div v-for="t in tasks" :key="t.id" class="list-item">
-          <div style="flex:1;min-width:0">
-            <input class="edit-inline" v-model="t.label" style="font-weight:500" @change="scheduleSave">
+        <div v-for="t in tasks" :key="t.id" class="swipe-wrap" @touchstart="swipeStart" @touchmove="swipeMove" @touchend="swipeEnd($event,'tasks',t.id)">
+          <div class="swipe-content" style="flex-wrap:wrap">
+            <div style="flex:1;min-width:0">
+              <input class="edit-inline" v-model="t.label" style="font-weight:500" @change="scheduleSave">
+            </div>
+            <button class="btn-del" @click="removeItem('tasks',t.id)">×</button>
+            <div style="width:100%;display:flex;align-items:center;gap:8px;padding-left:2px;margin-top:2px">
+              <select class="sel" v-model="t.assignee" @change="scheduleSave" style="width:auto;flex:none">
+                <option value="">— chi? —</option>
+                <option v-for="p in participants" :key="p.id" :value="p.name">{{ p.name }}</option>
+              </select>
+              <span class="pill status-pill" :class="'status-'+t.status" @click="cycleStatus(t)" style="font-size:11px;min-width:80px;text-align:center">
+                {{ t.status === 'todo' ? '⏳ Da fare' : t.status === 'doing' ? '🔄 In corso' : '✅ Fatto' }}
+              </span>
+            </div>
           </div>
-          <select class="sel" v-model="t.assignee" @change="scheduleSave" style="width:auto;min-width:70px">
-            <option value="">— chi? —</option>
-            <option v-for="p in participants" :key="p.id" :value="p.name">{{ p.name }}</option>
-          </select>
-          <span class="pill status-pill" :class="'status-'+t.status" @click="cycleStatus(t)" style="font-size:11px;min-width:80px;text-align:center">
-            {{ t.status === 'todo' ? '⏳ Da fare' : t.status === 'doing' ? '🔄 In corso' : '✅ Fatto' }}
-          </span>
-          <button class="btn-del" @click="removeItem('tasks',t.id)">×</button>
+          <div class="swipe-delete" @click="removeItem('tasks',t.id)"><span class="del-icon">🗑️</span></div>
         </div>
-        <div class="add-row">
-          <input v-model="newFields.task" placeholder="Nuovo task..." @keyup.enter="addTask">
-          <select class="sel" v-model="newFields.taskAssignee" style="width:auto;flex:none;min-width:70px">
-            <option value="">— chi? —</option>
-            <option v-for="p in participants" :key="p.id" :value="p.name">{{ p.name }}</option>
-          </select>
-          <button class="btn-add" @click="addTask">+</button>
+        <div class="add-row" style="flex-wrap:wrap">
+          <input v-model="newFields.task" placeholder="Nuovo task..." style="flex:1;min-width:140px" @keyup.enter="addTask">
+          <div style="display:flex;gap:6px;align-items:center">
+            <select class="sel" v-model="newFields.taskAssignee" style="width:auto;flex:none">
+              <option value="">— chi? —</option>
+              <option v-for="p in participants" :key="p.id" :value="p.name">{{ p.name }}</option>
+            </select>
+            <button class="btn-add" @click="addTask" style="width:36px;height:36px;font-size:18px">+</button>
+          </div>
         </div>
       </div></div>
     </div>
@@ -365,7 +526,6 @@ hr.div{border:none;border-top:1px solid var(--glass-border);margin:10px 0}
         <span class="s-chevron" :class="{open:open.menu}">▶</span>
       </div>
       <div class="section-body" :class="{open:open.menu}"><div class="section-inner">
-        <div class="note">Stuzzichini pochi — altrimenti non si mangia il resto!</div>
         <template v-for="(cat,ci) in menuCategories" :key="cat.key">
           <div class="sublabel">{{ cat.label }}</div>
           <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:4px">
@@ -383,7 +543,7 @@ hr.div{border:none;border-top:1px solid var(--glass-border);margin:10px 0}
         <hr class="div" style="margin-top:14px">
         <div class="sublabel">Sondaggio panino (automatico dai partecipanti)</div>
         <div v-for="opt in paninoPoll" :key="opt.name" class="poll-row">
-          <span class="poll-label">{{ opt.name }}</span>
+          <span class="poll-label">{{ pollEmoji(opt.name) }} {{ opt.name }}</span>
           <div class="poll-bar-bg"><div class="poll-bar" :style="{width:opt.pct+'%'}"></div></div>
           <span class="poll-votes">{{ opt.count }}</span>
         </div>
@@ -402,30 +562,26 @@ hr.div{border:none;border-top:1px solid var(--glass-border);margin:10px 0}
         <div v-if="!shopping.length" class="empty-state">Lista vuota. Aggiungi il primo articolo!</div>
         <template v-for="cat in shoppingCategories" :key="cat">
           <div class="sublabel" v-if="shoppingByCategory(cat).length">{{ cat }}</div>
-          <div v-for="item in shoppingByCategory(cat)" :key="item.id" class="list-item" style="cursor:pointer" @click="toggleCheck(item,$event)">
-            <input type="checkbox" v-model="item.done" @change="onCheckDone(item,$event)">
-            <span style="flex:1;min-width:0" :class="{done:item.done}">
-              <input class="edit-inline" v-model="item.label" :class="{done:item.done}" @click.stop @change="scheduleSave">
-            </span>
-            <select class="sel" v-model="item.category" @click.stop @change="scheduleSave" style="width:auto;flex:none;font-size:10px;padding:2px 4px">
-              <option v-for="c in shoppingCategories" :key="c" :value="c">{{ c }}</option>
-            </select>
-            <span class="pill priority-toggle" :class="item.priority ? 'pill-orange' : 'pill-gray'"
-              @click.stop="item.priority=!item.priority;scheduleSave()" style="font-size:9px;cursor:pointer">
-              {{ item.priority ? '🔥 priorità' : 'priorità' }}
-            </span>
-            <button class="btn-del" @click.stop="removeItem('shopping',item.id)">×</button>
+          <div v-for="item in shoppingByCategory(cat)" :key="item.id" class="swipe-wrap" @touchstart="swipeStart" @touchmove="swipeMove" @touchend="swipeEnd($event,'shopping',item.id)">
+            <div class="swipe-content" style="cursor:pointer" @click="toggleCheck(item,$event)">
+              <input type="checkbox" v-model="item.done" @change="onCheckDone(item,$event)">
+              <span style="flex:1;min-width:0" :class="{done:item.done}">
+                <input class="edit-inline" v-model="item.label" :class="{done:item.done}" @click.stop @change="scheduleSave">
+              </span>
+              <span class="pill" :class="item.priority ? 'pill-orange' : 'pill-gray'" style="font-size:9px;flex-shrink:0;cursor:pointer" @click.stop="item.priority=!item.priority;scheduleSave()">🔥</span>
+              <button class="btn-del" @click.stop="removeItem('shopping',item.id)">×</button>
+            </div>
+            <div class="swipe-delete" @click="removeItem('shopping',item.id)"><span class="del-icon">🗑️</span></div>
           </div>
         </template>
-        <div class="add-row">
-          <input v-model="newFields.shopping" placeholder="Aggiungi alla spesa..." @keyup.enter="addShopping">
-          <select class="sel" v-model="newFields.shoppingCat" style="width:auto;flex:none">
-            <option v-for="c in shoppingCategories" :key="c" :value="c">{{ c }}</option>
-          </select>
-          <label style="display:flex;align-items:center;gap:3px;font-size:11px;color:var(--text2);cursor:pointer;flex-shrink:0;white-space:nowrap">
-            <input type="checkbox" v-model="newFields.shoppingPriority" style="width:16px;height:16px"> 🔥
-          </label>
-          <button class="btn-add" @click="addShopping">+</button>
+        <div class="add-row" style="flex-wrap:wrap">
+          <input v-model="newFields.shopping" placeholder="Aggiungi alla spesa..." style="flex:1;min-width:140px" @keyup.enter="addShopping">
+          <div style="display:flex;gap:6px;align-items:center">
+            <select class="sel" v-model="newFields.shoppingCat" style="width:auto;flex:none">
+              <option v-for="c in shoppingCategories" :key="c" :value="c">{{ c }}</option>
+            </select>
+            <button class="btn-add" @click="addShopping" style="width:36px;height:36px;font-size:18px">+</button>
+          </div>
         </div>
       </div></div>
     </div>
@@ -440,25 +596,31 @@ hr.div{border:none;border-top:1px solid var(--glass-border);margin:10px 0}
       </div>
       <div class="section-body" :class="{open:open.materials}"><div class="section-inner">
         <div v-if="!materials.length" class="empty-state">Nessun materiale. Aggiungi il primo!</div>
-        <div v-for="m in materials" :key="m.id" class="list-item" style="align-items:flex-start">
-          <div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:2px">
-            <input class="edit-inline" v-model="m.label" style="font-weight:500" @change="scheduleSave">
-            <input class="edit-inline" v-model="m.note" placeholder="📝 Note..." style="font-size:11px;color:var(--text3);padding:1px 6px" @change="scheduleSave">
+        <div v-for="m in materials" :key="m.id" class="swipe-wrap" @touchstart="swipeStart" @touchmove="swipeMove" @touchend="swipeEnd($event,'materials',m.id)">
+          <div class="swipe-content" style="flex-wrap:wrap">
+            <div style="flex:1;min-width:0">
+              <input class="edit-inline" v-model="m.label" style="font-weight:500" @change="scheduleSave">
+            </div>
+            <button class="btn-del" @click="removeItem('materials',m.id)">×</button>
+            <div style="width:100%;display:flex;align-items:center;gap:8px;margin-top:2px">
+              <select class="sel" v-model="m.who" @change="scheduleSave" style="width:auto;flex:none">
+                <option value="">— chi? —</option>
+                <option v-for="p in participants" :key="p.id" :value="p.name">{{ p.name }}</option>
+              </select>
+              <input class="edit-inline" v-model="m.note" placeholder="📝 Note..." style="font-size:11px;color:var(--text3);padding:1px 6px;flex:1" @change="scheduleSave">
+            </div>
           </div>
-          <select class="sel" v-model="m.who" @change="scheduleSave" style="width:auto;min-width:80px">
-            <option value="">— chi? —</option>
-            <option v-for="p in participants" :key="p.id" :value="p.name">{{ p.name }}</option>
-          </select>
-          <span v-if="!m.who" class="pill pill-orange" style="font-size:9px">da assegnare</span>
-          <button class="btn-del" style="margin-top:2px" @click="removeItem('materials',m.id)">×</button>
+          <div class="swipe-delete" @click="removeItem('materials',m.id)"><span class="del-icon">🗑️</span></div>
         </div>
-        <div class="add-row">
-          <input v-model="newFields.material" placeholder="Cosa portare..." @keyup.enter="addMaterial">
-          <select class="sel" v-model="newFields.materialWho" style="width:auto;flex:none;min-width:70px">
-            <option value="">— chi? —</option>
-            <option v-for="p in participants" :key="p.id" :value="p.name">{{ p.name }}</option>
-          </select>
-          <button class="btn-add" @click="addMaterial">+</button>
+        <div class="add-row" style="flex-wrap:wrap">
+          <input v-model="newFields.material" placeholder="Cosa portare..." style="flex:1;min-width:140px" @keyup.enter="addMaterial">
+          <div style="display:flex;gap:6px;align-items:center">
+            <select class="sel" v-model="newFields.materialWho" style="width:auto;flex:none">
+              <option value="">— chi? —</option>
+              <option v-for="p in participants" :key="p.id" :value="p.name">{{ p.name }}</option>
+            </select>
+            <button class="btn-add" @click="addMaterial" style="width:36px;height:36px;font-size:18px">+</button>
+          </div>
         </div>
       </div></div>
     </div>
@@ -477,44 +639,6 @@ hr.div{border:none;border-top:1px solid var(--glass-border);margin:10px 0}
           <span class="avatar" :class="'av'+(participantIndex(a.id)%8)" style="width:24px;height:24px;font-size:9px">{{ initials(a.name) }}</span>
           <span style="font-weight:500;font-size:13px">{{ a.name }}</span>
           <span class="pill pill-red" style="font-size:10px">{{ a.allergies }}</span>
-          <span v-if="a.panino && a.panino !== 'da definire'" style="font-size:11px;color:var(--text3)">→ {{ a.panino }}</span>
-        </div>
-      </div></div>
-    </div>
-
-    <!-- ===================== CHECKLIST SUL POSTO ===================== -->
-    <div class="section">
-      <div class="section-header" @click="toggle('dayChecklist')">
-        <span class="s-icon">✅</span>
-        <span class="s-title">Checklist sul posto</span>
-        <span class="s-badge">{{ dayDone }}/{{ dayChecklist.length }}</span>
-        <span class="s-chevron" :class="{open:open.dayChecklist}">▶</span>
-      </div>
-      <div class="section-body" :class="{open:open.dayChecklist}"><div class="section-inner">
-        <div v-if="!dayChecklist.length" class="empty-state">Nessuna voce. Aggiungi la prima!</div>
-        <template v-for="phase in ['mattina','durante','fine']" :key="phase">
-          <div class="sublabel" v-if="dayByPhase(phase).length">{{ phase === 'mattina' ? '🌅 Mattina' : phase === 'durante' ? '☀️ Durante' : '🌙 Fine' }}</div>
-          <div v-for="item in dayByPhase(phase)" :key="item.id" class="list-item" style="cursor:pointer" @click="toggleCheck(item,$event)">
-            <input type="checkbox" v-model="item.done" @change="onCheckDone(item,$event)">
-            <span style="flex:1;min-width:0" :class="{done:item.done}">
-              <input class="edit-inline" v-model="item.label" :class="{done:item.done}" @click.stop @change="scheduleSave">
-            </span>
-            <select class="sel" v-model="item.phase" @click.stop @change="scheduleSave" style="width:auto;flex:none;font-size:10px;padding:2px 4px">
-              <option value="mattina">mattina</option>
-              <option value="durante">durante</option>
-              <option value="fine">fine</option>
-            </select>
-            <button class="btn-del" @click.stop="removeItem('dayChecklist',item.id)">×</button>
-          </div>
-        </template>
-        <div class="add-row">
-          <input v-model="newFields.day" placeholder="Nuova voce..." @keyup.enter="addDay">
-          <select class="sel" v-model="newFields.dayPhase" style="width:auto;flex:none">
-            <option value="mattina">🌅 mattina</option>
-            <option value="durante">☀️ durante</option>
-            <option value="fine">🌙 fine</option>
-          </select>
-          <button class="btn-add" @click="addDay">+</button>
         </div>
       </div></div>
     </div>
@@ -528,17 +652,30 @@ hr.div{border:none;border-top:1px solid var(--glass-border);margin:10px 0}
         <span class="s-chevron" :class="{open:open.payments}">▶</span>
       </div>
       <div class="section-body" :class="{open:open.payments}"><div class="section-inner">
+        <!-- SPLIT EQUO -->
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;flex-wrap:wrap">
+          <span style="font-size:12px;color:var(--text2)">Totale spesa:</span>
+          <div style="display:flex;align-items:center;gap:4px">
+            <span style="font-size:14px;color:var(--text2)">€</span>
+            <input type="number" v-model.number="splitTotal" @input="applySplit" min="0" step="1"
+              style="width:80px;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);border-radius:8px;padding:6px 10px;color:var(--text);font-family:'Syne',sans-serif;font-size:16px;font-weight:700;text-align:right">
+          </div>
+          <button @click="applySplit" style="background:rgba(255,107,53,0.15);border:1px solid rgba(255,107,53,0.3);border-radius:8px;padding:5px 12px;color:var(--accent);font-size:12px;font-family:'Syne',sans-serif;font-weight:600;cursor:pointer;transition:opacity .15s">
+            Dividi equo (€{{ splitPerPerson }}/persona)
+          </button>
+        </div>
+        <hr class="div">
         <div v-for="(p,i) in participants" :key="p.id" class="fondi-row">
           <span class="avatar" :class="'av'+(i%8)" style="width:24px;height:24px;font-size:9px">{{ initials(p.name) }}</span>
           <span style="flex:1;font-size:13px">{{ p.name }}</span>
           <div style="display:flex;align-items:center;gap:4px">
             <span style="font-size:13px;color:var(--text2)">€</span>
             <input type="number" :value="getPayment(p.id).quota" @input="setQuota(p.id,$event.target.value)" min="0" step="1"
-              style="width:60px;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);border-radius:8px;padding:4px 8px;color:var(--text);font-family:'Syne',sans-serif;font-size:14px;font-weight:600;text-align:right">
+              style="width:56px;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);border-radius:8px;padding:4px 6px;color:var(--text);font-family:'Syne',sans-serif;font-size:14px;font-weight:600;text-align:right">
           </div>
           <label style="display:flex;align-items:center;gap:5px;cursor:pointer;font-size:12px;color:var(--text2)">
             <input type="checkbox" :checked="getPayment(p.id).paid" @change="togglePaid(p.id,$event.target.checked)">
-            pagato
+            <span style="font-size:16px">{{ getPayment(p.id).paid ? '💰' : '💤' }}</span>
           </label>
         </div>
         <div style="margin-top:10px;padding-top:10px;border-top:1px solid rgba(255,255,255,0.06);display:flex;flex-direction:column;gap:6px;font-size:13px">
@@ -547,8 +684,12 @@ hr.div{border:none;border-top:1px solid var(--glass-border);margin:10px 0}
             <span style="font-family:'Syne',sans-serif;font-weight:600;color:var(--accent2)">€{{ paymentTotal }}</span>
           </div>
           <div style="display:flex;justify-content:space-between">
-            <span style="color:var(--text2)">Totale raccolto</span>
+            <span style="color:var(--text2)">Raccolto</span>
             <span style="font-family:'Syne',sans-serif;font-weight:600;color:var(--accent3)">€{{ paymentCollected }}</span>
+          </div>
+          <div style="display:flex;justify-content:space-between" v-if="paymentTotal - paymentCollected > 0">
+            <span style="color:var(--text2)">Mancano</span>
+            <span style="font-family:'Syne',sans-serif;font-weight:600;color:var(--danger)">€{{ paymentTotal - paymentCollected }}</span>
           </div>
         </div>
       </div></div>
@@ -565,10 +706,15 @@ hr.div{border:none;border-top:1px solid var(--glass-border);margin:10px 0}
       <div class="section-body" :class="{open:open.comments}"><div class="section-inner">
         <div class="comment-list">
           <div v-if="!comments.length" class="empty-state">Nessuna nota ancora. Sii il primo!</div>
-          <div v-for="c in comments" :key="c.id" class="comment-bubble">
-            <div class="comment-meta">{{ c.author }} · {{ c.time }}</div>
-            <input class="edit-inline" v-model="c.text" @change="scheduleSave" style="font-size:13px">
-            <button class="btn-del comment-del" @click="removeItem('comments',c.id)" style="width:20px;height:20px;font-size:12px">×</button>
+          <div v-for="c in comments" :key="c.id" class="swipe-wrap" style="border-radius:12px" @touchstart="swipeStart" @touchmove="swipeMove" @touchend="swipeEnd($event,'comments',c.id)">
+            <div class="swipe-content comment-bubble" style="border-radius:12px">
+              <div style="flex:1;min-width:0">
+                <div class="comment-meta">{{ c.author }} · {{ c.time }}</div>
+                <input class="edit-inline" v-model="c.text" @change="scheduleSave" style="font-size:13px">
+              </div>
+              <button class="btn-del" @click="removeItem('comments',c.id)" style="width:20px;height:20px;font-size:12px">×</button>
+            </div>
+            <div class="swipe-delete" @click="removeItem('comments',c.id)"><span class="del-icon">🗑️</span></div>
           </div>
         </div>
         <div style="margin-bottom:8px;display:flex;align-items:center;gap:8px">
@@ -583,12 +729,53 @@ hr.div{border:none;border-top:1px solid var(--glass-border);margin:10px 0}
       </div></div>
     </div>
 
+
+    <!-- ===================== PLAYLIST (commentata — usiamo Spotify/Apple Music Jam) ===================== -->
+    <!--
+    <div class="section">
+      <div class="section-header" @click="toggle('playlist')">
+        <span class="s-icon">🎵</span>
+        <span class="s-title">Playlist Collaborativa</span>
+        <span class="s-badge">{{ playlist.length }} brani</span>
+        <span class="s-chevron" :class="{open:open.playlist}">▶</span>
+      </div>
+      <div class="section-body" :class="{open:open.playlist}"><div class="section-inner">
+        <div v-if="!playlist.length" class="empty-state">Nessun brano ancora. Aggiungi il primo!</div>
+        <div v-for="s in playlist" :key="s.id" class="swipe-wrap" @touchstart="swipeStart" @touchmove="swipeMove" @touchend="swipeEnd($event,'playlist',s.id)">
+          <div class="swipe-content playlist-item">
+            <div class="platform-badge" :class="'platform-'+s.platform">
+              <span v-if="s.platform==='spotify'">🟢</span>
+              <span v-else-if="s.platform==='apple'">🍎</span>
+              <span v-else>🎶</span>
+            </div>
+            <div class="song-info">
+              <div class="song-title">{{ s.title }}</div>
+              <div class="song-added">aggiunto da {{ s.addedBy }}</div>
+            </div>
+            <button class="btn-open" :class="'btn-open-'+s.platform" @click.stop="openSong(s.url)">Apri</button>
+            <button class="btn-del" @click.stop="removeItem('playlist',s.id)" style="width:20px;height:20px;font-size:12px">×</button>
+          </div>
+          <div class="swipe-delete" @click="removeItem('playlist',s.id)"><span class="del-icon">🗑️</span></div>
+        </div>
+        <div class="add-row" style="flex-wrap:wrap;gap:6px;margin-top:10px">
+          <input v-model="newPlaylist.url" placeholder="Incolla link Spotify o Apple Music..." style="flex:1;min-width:180px" @keyup.enter="addPlaylistItem">
+          <input v-model="newPlaylist.title" placeholder="Titolo brano" style="flex:1;min-width:120px">
+          <div style="display:flex;gap:6px;align-items:center;width:100%">
+            <input v-model="newPlaylist.author" placeholder="Il tuo nome" style="flex:1">
+            <button class="btn-add" @click="addPlaylistItem" style="width:36px;height:36px;font-size:18px">+</button>
+          </div>
+        </div>
+      </div></div>
+    </div>
+    -->
+
   </div><!-- /wrap -->
 </div>
 
 <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-storage-compat.js"></script>
 
 <script>
 firebase.initializeApp({
@@ -601,6 +788,7 @@ firebase.initializeApp({
   appId:"1:552687598569:web:687630b501447f43e66978"
 });
 const db = firebase.database();
+const storage = firebase.storage();
 const stateRef = db.ref('pasquetta2026-v2');
 
 const uid = () => Date.now().toString(36) + Math.random().toString(36).substr(2,5);
@@ -640,7 +828,8 @@ const DEFAULT_DATA = {
     {id:'p16',name:'Camillo',panino:'da definire',allergies:'',note:''},
     {id:'p17',name:'Bruno',panino:'hamburger',allergies:'',note:'Organizzatore griglia'},
     {id:'p18',name:'Giulia',panino:'da definire',allergies:'',note:''},
-    {id:'p19',name:'Antonio',panino:'da definire',allergies:'',note:''}
+    {id:'p19',name:'Antonio',panino:'da definire',allergies:'',note:''},
+    {id:'p20',name:'Simone',panino:'da definire',allergies:'',note:'Organizzatore app'}
   ],
   tasks: [
     {id:'t1',label:'Ordinare la carne',assignee:'Bruno',status:'todo'},
@@ -720,7 +909,9 @@ const DEFAULT_DATA = {
     {id:'d8',label:'Raccogliere tutta la roba portata',phase:'fine',done:false}
   ],
   payments: {},
-  comments: []
+  comments: [],
+  photos: [],
+  playlist: []
 };
 
 function popConfetti(evt) {
@@ -754,16 +945,16 @@ createApp({
       participant:'',
       task:'',taskAssignee:'',
       shopping:'',shoppingCat:'carne',shoppingPriority:false,
-      material:'',materialWho:'',
-      day:'',dayPhase:'mattina'
+      material:'',materialWho:''
     });
+    const splitTotal = ref(0);
     const newMenuItems = reactive({fisso:'',antipasti:'',carne:'',contorni:'',bevande:'',dolci:'',altro:''});
     const open = ref({
       participants:false,tasks:true,menu:false,shopping:false,materials:false,
-      allergies:true,dayChecklist:false,payments:false,comments:false
+      allergies:true,payments:false,comments:false,photos:false,playlist:false
     });
 
-    const paninoOpts = ['hamburger','salamella','pollo','solo pane','niente','da definire'];
+    const paninoOpts = ['hamburger','salamella','pollo','niente','da definire'];
     const shoppingCategories = ['carne','antipasti','contorni','bevande','dolci','altro'];
     const menuCategories = [
       {key:'fisso',label:'Fisso per tutti',pill:'pill-orange'},
@@ -774,6 +965,43 @@ createApp({
       {key:'dolci',label:'Dolci',pill:'pill-amber'},
       {key:'altro',label:'Altro',pill:'pill-gray'}
     ];
+
+    // Weather (Open-Meteo, no API key needed)
+    const weather = reactive({loaded:false,error:null,icon:'',desc:'',temp:0,min:0,max:0,rain:0,wind:0,uv:0,hours:[]});
+    const wmoMap = {0:['☀️','Sereno'],1:['🌤️','Prevalentemente sereno'],2:['⛅','Parzialmente nuvoloso'],3:['☁️','Coperto'],45:['🌫️','Nebbia'],48:['🌫️','Nebbia gelata'],51:['🌦️','Pioggerella leggera'],53:['🌦️','Pioggerella'],55:['🌧️','Pioggerella intensa'],56:['🌨️','Pioggia gelata leggera'],57:['🌨️','Pioggia gelata'],61:['🌧️','Pioggia leggera'],63:['🌧️','Pioggia moderata'],65:['🌧️','Pioggia intensa'],66:['🌨️','Pioggia gelata'],67:['🌨️','Pioggia gelata intensa'],71:['🌨️','Neve leggera'],73:['❄️','Neve moderata'],75:['❄️','Neve intensa'],77:['❄️','Granuli di neve'],80:['🌦️','Rovesci leggeri'],81:['🌧️','Rovesci moderati'],82:['⛈️','Rovesci violenti'],85:['🌨️','Rovesci di neve'],86:['❄️','Rovesci di neve intensi'],95:['⛈️','Temporale'],96:['⛈️','Temporale con grandine'],99:['⛈️','Temporale forte con grandine']};
+    async function fetchWeather(){
+      try{
+        const lat=45.5961,lon=9.1276;
+        const res = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_sum,wind_speed_10m_max,uv_index_max&hourly=temperature_2m,weather_code&timezone=Europe%2FRome&start_date=2026-04-06&end_date=2026-04-06`);
+        const d = await res.json();
+        if(!d.daily) throw new Error('Dati non disponibili');
+        const code = d.daily.weather_code[0];
+        const [icon,desc] = wmoMap[code] || ['🌤️','Variabile'];
+        weather.icon = icon;
+        weather.desc = desc;
+        weather.max = Math.round(d.daily.temperature_2m_max[0]);
+        weather.min = Math.round(d.daily.temperature_2m_min[0]);
+        weather.temp = Math.round((d.daily.temperature_2m_max[0]+d.daily.temperature_2m_min[0])/2);
+        weather.rain = d.daily.precipitation_sum[0];
+        weather.wind = Math.round(d.daily.wind_speed_10m_max[0]);
+        weather.uv = Math.round(d.daily.uv_index_max[0]);
+        // Hourly 8:00–22:00
+        if(d.hourly){
+          const hrs = [];
+          for(let i=8;i<=22;i++){
+            const t = d.hourly.temperature_2m[i];
+            const c = d.hourly.weather_code[i];
+            const [hIcon] = wmoMap[c] || ['🌤️'];
+            hrs.push({time:String(i).padStart(2,'0')+':00',temp:Math.round(t),icon:hIcon});
+          }
+          weather.hours = hrs;
+        }
+        weather.loaded = true;
+      }catch(err){
+        weather.error = 'Previsioni non ancora disponibili';
+      }
+    }
+    fetchWeather();
 
     // Firebase sync
     let skipWatch = false;
@@ -810,11 +1038,15 @@ createApp({
     const tasks = computed(()=>(state.value?.tasks||[]));
     const shopping = computed(()=>(state.value?.shopping||[]));
     const materials = computed(()=>(state.value?.materials||[]));
-    const dayChecklist = computed(()=>(state.value?.dayChecklist||[]));
     const comments = computed(()=>(state.value?.comments||[]));
 
     const initials = (name)=>(name||'').substring(0,2).toUpperCase();
     const participantIndex = (id)=>(state.value?.participants||[]).findIndex(p=>p.id===id);
+
+    function pollEmoji(name) {
+      const map = {hamburger:'🍔',salamella:'🌭',pollo:'🍗',niente:'🚫','da definire':'❓'};
+      return map[name] || '🍽️';
+    }
 
     // Stats
     const allergies = computed(()=>participants.value.filter(p=>p.allergies));
@@ -822,12 +1054,16 @@ createApp({
     const shoppingDone = computed(()=>shopping.value.filter(s=>s.done).length);
     const shoppingPct = computed(()=>shopping.value.length?Math.round(shoppingDone.value/shopping.value.length*100):0);
     const unassignedMaterials = computed(()=>materials.value.filter(m=>!m.who).length);
-    const dayDone = computed(()=>dayChecklist.value.filter(d=>d.done).length);
 
     const globalProgress = computed(()=>{
-      const total = shopping.value.length + dayChecklist.value.length + tasks.value.length;
-      const done = shoppingDone.value + dayDone.value + tasksDone.value;
+      const total = shopping.value.length + tasks.value.length;
+      const done = shoppingDone.value + tasksDone.value;
       return total ? Math.round(done/total*100) : 0;
+    });
+
+    const splitPerPerson = computed(()=>{
+      const n = participants.value.length || 1;
+      return Math.ceil((splitTotal.value || 0) / n);
     });
 
     const paymentCollected = computed(()=>{
@@ -867,7 +1103,6 @@ createApp({
 
     // Grouping
     function shoppingByCategory(cat){ return shopping.value.filter(s=>s.category===cat); }
-    function dayByPhase(phase){ return dayChecklist.value.filter(d=>d.phase===phase); }
 
     // Sections
     function toggle(section){ open.value[section] = !open.value[section]; }
@@ -914,12 +1149,14 @@ createApp({
       newFields.value.materialWho='';
     }
 
-    function addDay(){
-      const label = newFields.value.day.trim();
-      if(!label) return;
-      if(!state.value.dayChecklist) state.value.dayChecklist=[];
-      state.value.dayChecklist.push({id:'d_'+uid(),label,phase:newFields.value.dayPhase,done:false});
-      newFields.value.day='';
+    function applySplit(){
+      const perPerson = splitPerPerson.value;
+      if(!state.value.payments) state.value.payments={};
+      participants.value.forEach(p=>{
+        if(!state.value.payments[p.id]) state.value.payments[p.id]={quota:0,paid:false};
+        state.value.payments[p.id].quota = perPerson;
+      });
+      scheduleSave();
     }
 
     function addComment(){
@@ -979,6 +1216,164 @@ createApp({
       if(item.done) popConfetti(evt);
     }
 
+    // Playlist
+    const playlist = computed(()=>(state.value?.playlist||[]));
+    const newPlaylist = reactive({url:'',title:'',author:''});
+    function detectPlatform(url){
+      if(/spotify\.com|open\.spotify/i.test(url)) return 'spotify';
+      if(/music\.apple\.com/i.test(url)) return 'apple';
+      return 'other';
+    }
+    function addPlaylistItem(){
+      const url = newPlaylist.url.trim();
+      if(!url) return;
+      if(!state.value.playlist) state.value.playlist=[];
+      state.value.playlist.push({
+        id:'pl_'+uid(),
+        url,
+        platform:detectPlatform(url),
+        title:newPlaylist.title.trim()||url.substring(0,50),
+        addedBy:newPlaylist.author.trim()||'Anonimo'
+      });
+      newPlaylist.url='';newPlaylist.title='';
+    }
+    function openSong(url){ window.open(url,'_blank'); }
+
+    // Photo wall
+    const photos = computed(()=>(state.value?.photos||[]));
+    const photoAuthor = ref('');
+    const photoUploading = ref(false);
+    const photoProgress = ref(0);
+    const lightboxPhoto = ref(null);
+    const photoInputRef = ref(null);
+
+    function resizeImage(file, maxPx){
+      return new Promise((resolve)=>{
+        const img = new Image();
+        const reader = new FileReader();
+        reader.onload = (e)=>{ img.src = e.target.result; };
+        img.onload = ()=>{
+          let w=img.width, h=img.height;
+          if(w>maxPx||h>maxPx){
+            if(w>h){ h=Math.round(h*(maxPx/w)); w=maxPx; }
+            else{ w=Math.round(w*(maxPx/h)); h=maxPx; }
+          }
+          const c=document.createElement('canvas');
+          c.width=w; c.height=h;
+          c.getContext('2d').drawImage(img,0,0,w,h);
+          c.toBlob((blob)=>resolve(blob),'image/jpeg',0.92);
+        };
+        reader.readAsDataURL(file);
+      });
+    }
+
+    async function handlePhotoUpload(e){
+      const file = e.target.files?.[0];
+      if(!file) return;
+      photoUploading.value=true; photoProgress.value=0;
+      try{
+        const blob = await resizeImage(file,2400);
+        const id = 'ph_'+uid();
+        const storageRef = storage.ref('photos/'+id+'.jpg');
+        const task = storageRef.put(blob);
+        task.on('state_changed',
+          (snap)=>{ photoProgress.value=Math.round((snap.bytesTransferred/snap.totalBytes)*100); },
+          (err)=>{ photoUploading.value=false; },
+          async()=>{
+            const url = await storageRef.getDownloadURL();
+            if(!state.value.photos) state.value.photos=[];
+            state.value.photos.push({
+              id,url,
+              author:photoAuthor.value.trim()||'Anonimo',
+              timestamp:Date.now()
+            });
+            scheduleSave();
+            photoUploading.value=false; photoProgress.value=0;
+          }
+        );
+      }catch(err){ photoUploading.value=false; }
+      e.target.value='';
+    }
+
+    function openLightbox(p){ lightboxPhoto.value=p; }
+    function closeLightbox(){ lightboxPhoto.value=null; }
+
+    async function downloadPhoto(photo){
+      try{
+        const res = await fetch(photo.url);
+        const blob = await res.blob();
+        const a = document.createElement('a');
+        a.href = URL.createObjectURL(blob);
+        a.download = 'pasquetta_'+photo.id+'.jpg';
+        a.click();
+        URL.revokeObjectURL(a.href);
+      }catch(e){ window.open(photo.url,'_blank'); }
+    }
+
+    function removePhoto(id){
+      if(!state.value.photos) return;
+      const idx = state.value.photos.findIndex(p=>p.id===id);
+      if(idx>=0) state.value.photos.splice(idx,1);
+      try{ storage.ref('photos/'+id+'.jpg').delete(); }catch(e){}
+      scheduleSave();
+    }
+
+    // Swipe to delete (iPhone-style)
+    let swipeX0 = 0;
+    let swipeEl = null;
+    let swipeDelEl = null;
+    function swipeStart(e){
+      const t = e.touches[0];
+      swipeX0 = t.clientX;
+      const wrap = e.currentTarget;
+      swipeEl = wrap.querySelector('.swipe-content');
+      swipeDelEl = wrap.querySelector('.swipe-delete');
+      if(swipeEl) swipeEl.style.transition = 'none';
+      if(swipeDelEl) swipeDelEl.style.transition = 'none';
+    }
+    function swipeMove(e){
+      if(!swipeEl) return;
+      const dx = e.touches[0].clientX - swipeX0;
+      if(dx < 0) {
+        const absDx = Math.min(Math.abs(dx), 80);
+        swipeEl.style.transform = 'translateX('+ (-absDx) +'px)';
+        if(swipeDelEl){
+          const progress = absDx / 80;
+          swipeDelEl.style.opacity = progress;
+          if(progress >= 0.75) swipeDelEl.classList.add('ready');
+          else swipeDelEl.classList.remove('ready');
+        }
+        e.preventDefault();
+      }
+    }
+    function swipeEnd(e, section, id){
+      if(!swipeEl) return;
+      swipeEl.style.transition = 'transform .25s ease';
+      if(swipeDelEl) swipeDelEl.style.transition = 'opacity .15s ease';
+      const dx = parseInt(swipeEl.style.transform.replace(/[^-\d]/g,'')||'0');
+      if(dx <= -60){
+        swipeEl.style.transform = 'translateX(-72px)';
+        if(swipeDelEl) swipeDelEl.style.opacity = '1';
+      } else {
+        swipeEl.style.transform = 'translateX(0)';
+        if(swipeDelEl){ swipeDelEl.style.opacity = '0'; swipeDelEl.classList.remove('ready'); }
+      }
+      swipeEl = null;
+      swipeDelEl = null;
+    }
+
+    // Close any open swipe when tapping elsewhere
+    document.addEventListener('touchstart', (e) => {
+      document.querySelectorAll('.swipe-wrap').forEach(wrap => {
+        if(!wrap.contains(e.target)){
+          const el = wrap.querySelector('.swipe-content');
+          const del = wrap.querySelector('.swipe-delete');
+          if(el){ el.style.transition = 'transform .25s ease'; el.style.transform = 'translateX(0)'; }
+          if(del){ del.style.transition = 'opacity .15s ease'; del.style.opacity = '0'; del.classList.remove('ready'); }
+        }
+      });
+    }, {passive:true});
+
     // Payments
     function getPayment(pid){
       return (state.value?.payments||{})[pid] || {quota:0,paid:false};
@@ -1000,17 +1395,23 @@ createApp({
     }
 
     return {
-      state,loaded,syncTime,open,newFields,newMenuItems,commentAuthor,commentText,
+      state,loaded,syncTime,weather,open,newFields,newMenuItems,commentAuthor,commentText,
+      splitTotal,splitPerPerson,
       paninoOpts,shoppingCategories,menuCategories,
-      participants,tasks,shopping,materials,dayChecklist,comments,allergies,
-      tasksDone,shoppingDone,shoppingPct,unassignedMaterials,dayDone,globalProgress,
+      participants,tasks,shopping,materials,comments,allergies,
+      photos,playlist,
+      tasksDone,shoppingDone,shoppingPct,unassignedMaterials,globalProgress,
       paymentCollected,paymentTotal,paymentPct,paidCount,paninoPoll,
-      initials,participantIndex,toggle,
-      shoppingByCategory,dayByPhase,
-      removeItem,addParticipant,addTask,addShopping,addMaterial,addDay,addComment,
-      cycleStatus,toggleCheck,onCheckDone,
+      initials,participantIndex,pollEmoji,toggle,
+      shoppingByCategory,
+      removeItem,addParticipant,addTask,addShopping,addMaterial,addComment,
+      applySplit,cycleStatus,toggleCheck,onCheckDone,
+      swipeStart,swipeMove,swipeEnd,
       removeMenuItem,addMenuItem,updateMenuItem,
-      getPayment,setQuota,togglePaid,scheduleSave
+      getPayment,setQuota,togglePaid,scheduleSave,
+      newPlaylist,detectPlatform,addPlaylistItem,openSong,
+      photoAuthor,photoUploading,photoProgress,lightboxPhoto,photoInputRef,
+      handlePhotoUpload,openLightbox,closeLightbox,downloadPhoto,removePhoto
     };
   }
 }).mount('#app');
